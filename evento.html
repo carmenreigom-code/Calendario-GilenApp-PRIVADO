@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="JS/ajustes.js"></script>
+    <title>Detalles del Evento | Gilena</title>
+    <link rel="stylesheet" href="CSS/estilos.css" />
+    <link rel="stylesheet" href="CSS/ajustes.css" />
+    <link rel="stylesheet" href="CSS/evento.css" />
+    <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body class="pagina-evento">
+    <header>
+      <div class="contenedor-header">
+        <div class="logo-titulo">
+          <img src="img/logo-gilena.png" alt="Logo Ayuntamiento" />
+          <div><h1>Ayuntamiento de Gilena</h1><p>Calendario Digital Municipal</p></div>
+        </div>
+        <nav><a href="mis-eventos.html"><i class="fa-solid fa-heart"></i> Mis eventos</a><button type="button" class="nav-ajustes" data-abrir-ajustes aria-haspopup="dialog"><span class="icono-ajustes" aria-hidden="true">⚙</span> Ajustes</button></nav>
+      </div>
+    </header>
+    <main id="detalleEventoContenedor"></main>
+    <script src="JS/estado-eventos.js"></script>
+    <script src="JS/formato-fechas.js"></script>
+    <script src="JS/calendario-externo.js"></script>
+    <script src="JS/imagenes-evento.js"></script>
+    <script src="JS/render-evento.js"></script>
+    <script>
+      let eventosDetalle = [];
+      try {
+        const guardados = JSON.parse(localStorage.getItem("eventos") || "[]");
+        eventosDetalle = Array.isArray(guardados) ? guardados : [];
+      } catch (error) { eventosDetalle = []; }
+      const id = new URLSearchParams(window.location.search).get("id");
+      const actual = eventosDetalle.find((item) => String(item.id) === id && esEventoPublicado(item));
+      const contenedor = document.getElementById("detalleEventoContenedor");
+      if (actual) {
+        contenedor.innerHTML = DetalleEvento.renderizar(actual, { relacionados: eventosDetalle });
+        DetalleEvento.activar(contenedor, actual);
+      } else {
+        contenedor.innerHTML = '<div class="evento-no-encontrado"><h2>Evento no encontrado</h2><a href="index.html" class="boton-principal">Volver al inicio</a></div>';
+      }
+    </script>
+  </body>
+</html>

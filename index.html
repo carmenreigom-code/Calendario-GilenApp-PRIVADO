@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="JS/ajustes.js"></script>
+
+    <title>Ayuntamiento de Gilena | Calendario Municipal</title>
+
+    <link rel="stylesheet" href="CSS/estilos.css" />
+    <link rel="stylesheet" href="CSS/ajustes.css" />
+    <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+
+    <!-- Iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body class="pagina-inicio">
+    <!-- ENCABEZADO -->
+    <header>
+      <div class="contenedor-header">
+        <div class="logo-titulo">
+          <!-- Sustituye esta imagen por el logo oficial -->
+          <img src="img/logo-gilena.png" alt="Logo Ayuntamiento de Gilena" />
+
+          <div>
+            <h1>Ayuntamiento de Gilena</h1>
+            <p>Calendario Digital Municipal</p>
+          </div>
+        </div>
+
+        <nav>
+          <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Inicio
+          </a>
+
+          <a href="#calendario">
+            <i class="fa-solid fa-calendar-days"></i>
+            Calendario
+          </a>
+
+          <a href="#eventos">
+            <i class="fa-solid fa-star"></i>
+            Eventos
+          </a>
+
+          <a href="mis-eventos.html">
+            <i class="fa-solid fa-heart"></i>
+            Mis eventos
+          </a>
+
+          <button type="button" class="nav-ajustes" data-abrir-ajustes aria-haspopup="dialog">
+            <span class="icono-ajustes" aria-hidden="true">⚙</span> Ajustes
+          </button>
+
+          <a href="#informacion">
+            <i class="fa-solid fa-circle-info"></i>
+            Información
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- PORTADA -->
+    <section class="hero">
+      <div class="hero-contenido">
+        <span class="etiqueta">
+          <i class="fa-solid fa-calendar"></i>
+          AGENDA MUNICIPAL
+        </span>
+
+        <h2>TODO LO QUE OCURRE EN GILENA</h2>
+
+        <p>
+          Consulta fiestas, cultura, deportes y todas las actividades programadas en el municipio.
+        </p>
+
+        <a href="#calendario" class="boton-principal">
+          Ver calendario
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- BUSCADOR -->
+    <main>
+      <section class="buscador-seccion" aria-labelledby="tituloBuscador">
+        <div class="buscador-intro">
+          <span>AGENDA MUNICIPAL</span>
+          <h2 id="tituloBuscador">Encuentra un evento</h2>
+          <p>Busca una actividad o filtra los eventos por categoría.</p>
+        </div>
+      <div class="busqueda">
+        <div class="campo-busqueda">
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <!-- Cambiamos oninput a la nueva función -->
+          <input
+            type="text"
+            id="buscador"
+            placeholder="Buscar un evento..."
+            oninput="buscarEventoDesplegable()"
+          />
+
+          <!-- NUEVO: Contenedor oculto para el mini apartado -->
+          <div
+            id="resultadosBusqueda"
+            class="resultados-desplegable"
+            style="display: none"
+          >
+            <!-- El JavaScript meterá los resultados aquí -->
+          </div>
+        </div>
+
+        <div class="campo-filtro">
+          <i class="fa-solid fa-filter"></i>
+
+          <select id="filtroCategoria" onchange="filtrarEventos()">
+            <option value="todos">Todas las categorías</option>
+            <option value="cultura">Cultura</option><option value="deportes">Deportivo</option><option value="fiestas">Fiesta</option>
+            <option value="arte">Arte</option><option value="concierto">Concierto</option><option value="cine">Cine</option>
+            <option value="educacion">Educación</option><option value="ayuntamiento">Ayuntamiento</option><option value="familiar">Familiar</option>
+            <option value="mercado">Mercado</option><option value="naturaleza">Naturaleza</option><option value="gastronomia">Gastronomía</option>
+            <option value="juventud">Juventud</option><option value="otros">Otros</option>
+          </select>
+        </div>
+      </div>
+
+      </section>
+
+      <!-- CALENDARIO -->
+      <section id="calendario" class="seccion">
+        <div class="titulo-seccion">
+          <div>
+            <h2>Calendario de eventos</h2>
+            <p class="subtitulo-seccion">Consulta las actividades y eventos programados en Gilena.</p>
+          </div>
+        </div>
+
+        <div class="calendario-contenedor">
+          <div class="calendario-cabecera">
+            <button onclick="mesAnterior()" aria-label="Mes anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+
+            <h3 id="mesActual"></h3>
+
+            <button onclick="mesSiguiente()" aria-label="Mes siguiente">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+
+          <div class="dias-semana">
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mié</div>
+            <div>Jue</div>
+            <div>Vie</div>
+            <div>Sáb</div>
+            <div>Dom</div>
+          </div>
+
+          <div id="calendarioDias" class="calendario-dias">
+            <!-- JavaScript genera los días -->
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTOS -->
+      <section id="eventos" class="seccion">
+        <div class="titulo-seccion">
+          <div>
+            <span>PRÓXIMAMENTE</span>
+            <h2>Próximos eventos</h2>
+          </div>
+        </div>
+
+        <div id="listaEventos" class="lista-eventos">
+          <!-- JavaScript genera los eventos -->
+        </div>
+
+        <p id="sinResultados" class="sin-resultados">
+          No se han encontrado eventos.
+        </p>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="informacion">
+      <div>
+        <h3>Ayuntamiento de Gilena</h3>
+
+        <p>Calendario Digital Municipal</p>
+      </div>
+
+      <div class="footer-contacto">
+        <p>
+          <i class="fa-solid fa-location-dot"></i>
+          Gilena, Sevilla
+        </p>
+
+        <p>
+          <i class="fa-solid fa-envelope"></i>
+          Información municipal
+        </p>
+      </div>
+    </footer>
+
+    <script src="JS/estado-eventos.js"></script>
+    <script src="JS/formato-fechas.js"></script>
+    <script src="JS/imagenes-evento.js"></script>
+    <script src="JS/script.js"></script>
+  </body>
+</html>

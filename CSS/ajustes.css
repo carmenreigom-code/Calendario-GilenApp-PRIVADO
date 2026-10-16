@@ -1,0 +1,127 @@
+/* Ajustes personales: únicamente se carga en las páginas públicas. */
+:root { --aj-fondo: #f0f4f8; --aj-tarjeta: #fff; --aj-texto: #263238; --aj-titulo: #1a2f4b; --aj-suave: #536576; --aj-borde: #cbd7e1; --aj-acento: #29527a; --aj-acento-texto: #fff; --aj-campo: #fafafa; --aj-destacado: #e6ecf1; --aj-foco: #bd6500; --aj-boton: #29527a; --aj-boton-hover: #1a2f4b; --aj-boton-texto: #fff; }
+:root[data-texto="grande"] { font-size: 125%; }
+:root[data-texto="muy-grande"] { font-size: 150%; }
+:root[data-tema-efectivo="oscuro"] { --aj-fondo: #262626; --aj-tarjeta: #333; --aj-texto: #f5f5f5; --aj-titulo: #f5f5f5; --aj-suave: #d0d0d0; --aj-borde: #525252; --aj-acento: #9dccff; --aj-acento-texto: #202020; --aj-campo: #404040; --aj-destacado: #404040; --aj-foco: #ffd45a; --aj-boton: #f4b41a; --aj-boton-hover: #ffd05b; --aj-boton-texto: #202020; --aj-pie: #202020; --aj-capa-inicio: rgba(30,30,30,.9); --aj-capa-fin: rgba(30,30,30,.7); }
+:root[data-contraste="true"] { --aj-fondo: #fff; --aj-tarjeta: #fff; --aj-texto: #111; --aj-titulo: #000; --aj-suave: #222; --aj-borde: #111; --aj-acento: #003eb3; --aj-acento-texto: #fff; --aj-campo: #fff; --aj-destacado: #e9efff; --aj-foco: #b34b00; --aj-boton: #003eb3; --aj-boton-hover: #002a80; --aj-boton-texto: #fff; }
+:root[data-tema-efectivo="oscuro"][data-contraste="true"] { --aj-fondo: #000; --aj-tarjeta: #000; --aj-texto: #fff; --aj-titulo: #fff; --aj-suave: #f2f2f2; --aj-borde: #fff; --aj-acento: #ffe45c; --aj-acento-texto: #000; --aj-campo: #111; --aj-destacado: #252525; --aj-foco: #65eaff; --aj-boton: #ffe45c; --aj-boton-hover: #fff09a; --aj-boton-texto: #000; --aj-pie: #000; --aj-capa-inicio: rgba(0,0,0,.96); --aj-capa-fin: rgba(0,0,0,.86); }
+
+body { background: var(--aj-fondo); color: var(--aj-texto); }
+body.ajustes-abiertos { overflow: hidden; }
+body :is(a, button, input, select, textarea):focus-visible, .ajustes-panel:focus-visible { outline: 3px solid var(--aj-foco); outline-offset: 3px; }
+.contenedor-header { gap: 16px; }
+nav { align-items: center; flex-wrap: wrap; }
+nav .nav-ajustes { padding: 12px 15px; border: 0; border-radius: 8px; background: transparent; color: #37474f; font: inherit; cursor: pointer; transition: background .2s; }
+nav .nav-ajustes:hover { background: #e6ecf1; color: #29527a; }
+.icono-ajustes { display: inline-block; margin-right: .1em; }
+.logo-titulo > div, .evento-card, .evento-sidebar, .mis-evento-card { min-width: 0; }
+.logo-titulo h1, .detalle-relacionados a, .evento-contenido h3, .mis-evento-contenido h3, .boton-evento, .boton-detalle { overflow-wrap: anywhere; }
+.calendario-dias, .dias-semana { grid-template-columns: repeat(7,minmax(0,1fr)); }
+.calendario-cabecera button span { font-size: 1.5rem; line-height: 1; }
+.dia.evento { width: 100%; text-align: left; font: inherit; }
+:root[data-tema-efectivo="oscuro"] .boton-favorito > i { display: none; }
+:root[data-tema-efectivo="oscuro"] .boton-favorito::before { content: "♡"; font-family: Arial, Helvetica, sans-serif; font-size: 1.4em; line-height: 1; }
+:root[data-tema-efectivo="oscuro"] .boton-favorito.activo::before { content: "♥"; font-size: 1.1em; }
+.nombre-evento-calendario { white-space: normal; overflow: visible; overflow-wrap: anywhere; text-overflow: clip; }
+
+.ajustes-fondo[hidden] { display: none; }
+.ajustes-fondo { position: fixed; inset: 0; z-index: 3000; display: flex; justify-content: flex-end; background: rgba(0, 0, 0, .7); }
+.ajustes-panel { width: min(100%, 430px); height: 100%; max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain; padding: 24px; background: var(--aj-tarjeta); color: var(--aj-texto); box-shadow: -8px 0 30px rgba(0,0,0,.22); }
+.ajustes-cabecera { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.ajustes-cabecera h2 { color: var(--aj-titulo); font-size: 1.55rem; line-height: 1.25; }
+.ajustes-cerrar { flex: 0 0 auto; width: 44px; height: 44px; border: 1px solid var(--aj-borde); border-radius: 8px; background: var(--aj-campo); color: var(--aj-texto); font: inherit; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.ajustes-ayuda { margin: 12px 0 24px; color: var(--aj-suave); line-height: 1.5; }
+.ajustes-seccion { margin: 0 0 22px; padding: 18px 0 0; border-top: 1px solid var(--aj-borde); }
+.ajustes-seccion h3 { margin-bottom: 15px; color: var(--aj-titulo); font-size: 1.15rem; }
+.ajustes-campo { display: grid; gap: 7px; margin: 0 0 17px; font-weight: 700; }
+.ajustes-campo select { width: 100%; min-height: 44px; padding: 9px 11px; border: 2px solid var(--aj-borde); border-radius: 8px; background: var(--aj-campo); color: var(--aj-texto); font: inherit; font-weight: 400; }
+.ajustes-interruptor { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 44px; margin: 0 0 10px; cursor: pointer; }
+.ajustes-interruptor input { width: 22px; height: 22px; flex: 0 0 auto; accent-color: var(--aj-acento); cursor: pointer; }
+.ajustes-restablecer { width: 100%; min-height: 44px; margin: 6px 0 24px; padding: 10px 14px; border: 2px solid var(--aj-acento); border-radius: 8px; background: var(--aj-tarjeta); color: var(--aj-acento); font: inherit; font-weight: 700; cursor: pointer; }
+.ajustes-restablecer:hover { background: var(--aj-destacado); }
+
+/* Recolorea componentes existentes sin alterar fotografías ni carteles. */
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(header, .busqueda, .resultados-desplegable, .calendario-contenedor, .dia:not(.evento):not(.vacio), .evento-card, .mis-evento-card, .favoritos-vacio, .detalle-seccion, .aviso-actividad, .caja-info, .caja-calendario, .estadistica, .destacado-sin-eventos, .sin-resultados) { background: var(--aj-tarjeta); color: var(--aj-texto); border-color: var(--aj-borde); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(.logo-titulo h1, .titulo-seccion h2, .buscador-intro h2, .evento-contenido h3, .mis-evento-contenido h3, .favoritos-vacio h3, .detalle-seccion h3, .detalle-programa strong, .mis-eventos-herramientas h3, .evento-card .evento-contenido h3, #eventos .evento-card .evento-contenido h3, .evento-destacado-contenido h3, .caja-info p, .caja-calendario h3) { color: var(--aj-titulo); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(.logo-titulo p, .subtitulo-seccion, .buscador-intro p, .evento-contenido p, .evento-metadatos, .evento-descripcion, .mis-evento-fecha, .mis-evento-metadatos, .mis-eventos-herramientas p, .nota-avisos, #estadoNotificaciones, .favoritos-vacio p, .detalle-seccion p, .detalle-dato dt, .detalle-dato dd, .detalle-relacionados small, .evento-destacado-resumen, .item-resultado-mini p, .sin-resultados-mini, .evento-card .evento-contenido .evento-descripcion, .evento-card .evento-contenido .evento-metadatos) { color: var(--aj-suave); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(nav a, nav .nav-ajustes, .item-resultado-mini, .detalle-dato a, .detalle-cartel, .detalle-programa time, .evento-fecha, .evento-card .evento-contenido .evento-fecha) { color: var(--aj-acento); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(nav a:hover, nav .nav-ajustes:hover, .item-resultado-mini:hover, .detalle-relacionados a, .categoria, .mis-evento-contenido .categoria, .dia.fin-de-semana, .dia.vacio.fin-de-semana, .calendario-cabecera button, .boton-aviso, .boton-notificaciones, .boton-detalle-secundario, .boton-favorito, .evento-fallback, .evento-imagen, .mis-evento-imagen, .detalle-cartel img, .detalle-galeria button) { background: var(--aj-destacado); color: var(--aj-texto); border-color: var(--aj-borde); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(.busqueda input, .busqueda select, input, select, textarea) { background-color: var(--aj-campo); color: var(--aj-texto); border-color: var(--aj-borde); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(.boton-evento, .boton-detalle, .boton-calendario, .btn-primario) { background: var(--aj-boton); color: var(--aj-boton-texto); border-color: var(--aj-boton); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(.boton-detalle-secundario, .boton-calendario-secundario) { background: var(--aj-destacado); color: var(--aj-texto); border-color: var(--aj-borde); }
+:root:is([data-tema-efectivo="oscuro"],[data-contraste="true"]) body :is(.dias-semana div, .campo-busqueda i, .campo-filtro i, .titulo-seccion span, .evento-metadatos i, .detalle-seccion a) { color: var(--aj-acento); }
+:root[data-tema-efectivo="oscuro"] body .dia.evento { background: var(--aj-destacado); color: var(--aj-texto); border-color: var(--aj-borde); border-left-color: var(--aj-acento); box-shadow: inset 3px 0 0 var(--aj-acento); }
+:root[data-tema-efectivo="oscuro"] body .dia.evento .nombre-evento-calendario { background: var(--aj-tarjeta); color: var(--aj-texto); }
+:root[data-contraste="true"] body .dia.evento { background: var(--aj-destacado); color: var(--aj-texto); border: 2px solid var(--aj-borde); }
+:root[data-contraste="true"] body .dia.evento .nombre-evento-calendario { background: var(--aj-destacado); color: var(--aj-texto); }
+:root[data-contraste="true"] body :is(.evento-card, .mis-evento-card, .calendario-contenedor, .busqueda, .detalle-seccion, .favoritos-vacio, .ajustes-panel) { border: 2px solid var(--aj-borde); box-shadow: none; }
+
+/* Superficies grandes del tema oscuro: grises con acentos azules puntuales. */
+:root[data-tema-efectivo="oscuro"] body .hero { background: linear-gradient(var(--aj-capa-inicio),var(--aj-capa-fin)),url("../img/gilena.jpg") center / cover; }
+:root[data-tema-efectivo="oscuro"] body .mis-eventos-portada { background: var(--aj-tarjeta); border: 1px solid var(--aj-borde); color: var(--aj-texto); }
+:root[data-tema-efectivo="oscuro"] body .mis-eventos-portada :is(p,.mis-eventos-eyebrow) { color: var(--aj-suave); }
+:root[data-tema-efectivo="oscuro"] body .hero-evento { background: var(--aj-tarjeta); }
+:root[data-tema-efectivo="oscuro"] body .hero-evento::after { background: linear-gradient(90deg,var(--aj-capa-inicio),var(--aj-capa-fin)); }
+:root[data-tema-efectivo="oscuro"] body .hero-evento-metas { color: var(--aj-suave); }
+:root[data-tema-efectivo="oscuro"] body :is(.calendario-cabecera h3,.numero-dia) { color: var(--aj-texto); }
+:root[data-tema-efectivo="oscuro"] body footer { background: var(--aj-pie); border-top: 1px solid var(--aj-borde); color: var(--aj-texto); }
+:root[data-tema-efectivo="oscuro"] body footer p { color: var(--aj-suave); }
+:root[data-tema-efectivo="oscuro"] body :is(.evento-destacado,.filtro-rapido,.favoritos-vacio-icono) { background: var(--aj-tarjeta); color: var(--aj-texto); border-color: var(--aj-borde); }
+:root[data-tema-efectivo="oscuro"] body :is(.evento-destacado-fecha,.evento-destacado-datos) { color: var(--aj-suave); }
+:root[data-tema-efectivo="oscuro"] body :is(.detalle-seccion h3,.detalle-programa li,.item-resultado-mini) { border-color: var(--aj-borde); }
+:root[data-tema-efectivo="oscuro"] body :is(.evento-card .evento-imagen > img,.detalle-cartel img) { background-color: var(--aj-destacado); }
+:root[data-tema-efectivo="oscuro"] body .aviso-actividad strong { color: var(--aj-texto); }
+:root[data-tema-efectivo="oscuro"] body .aviso-actividad.cancelado strong { color: #ff9a9a; }
+:root[data-tema-efectivo="oscuro"] body .boton-favorito.activo { color: #ff829b; }
+:root[data-tema-efectivo="oscuro"] body .boton-aviso.activo { color: var(--aj-acento); }
+:root[data-tema-efectivo="oscuro"] body .busqueda input::placeholder { color: var(--aj-suave); opacity: 1; }
+:root[data-tema-efectivo="oscuro"] body :is(.boton-evento,.boton-detalle:not(.boton-detalle-secundario),.boton-calendario:not(.boton-calendario-secundario),.boton-principal):is(:hover,:focus-visible) { background: var(--aj-boton-hover); border-color: var(--aj-boton-hover); color: var(--aj-boton-texto); }
+:root[data-tema-efectivo="oscuro"] body .boton-principal { background: var(--aj-boton); color: var(--aj-boton-texto); }
+:root[data-tema-efectivo="oscuro"] body :is(.boton-detalle-secundario,.boton-calendario-secundario,.calendario-cabecera button,.ajustes-restablecer):is(:hover,:focus-visible) { background: var(--aj-borde); color: var(--aj-texto); }
+:root[data-tema-efectivo="oscuro"] body .dia.evento:hover { background: var(--aj-campo); }
+:root[data-tema-efectivo="oscuro"] body .buscador-seccion .busqueda :is(input,select):focus-visible { outline: 3px solid var(--aj-foco); outline-offset: 2px; box-shadow: none; }
+
+/* Los tamaños de letra existentes usan píxeles; estas reglas permiten escalarlos. */
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body { font-size: 1rem; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(nav a, nav .nav-ajustes, .busqueda input, .busqueda select, .boton-principal, .boton-evento, .boton-detalle, .boton-notificaciones, .boton-aviso, .mis-eventos-portada > p, .detalle-seccion p, .detalle-dato dd, .evento-contenido p, .nota-avisos) { font-size: 1rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.hero p, .buscador-intro p, .detalle-seccion.texto-principal, .favoritos-vacio p, .mis-eventos-herramientas p, footer p, .sin-resultados) { font-size: 1rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.logo-titulo p, .subtitulo-seccion, .evento-fecha, .evento-metadatos, .mis-evento-fecha, .mis-evento-metadatos, .categoria, .contador-favoritos, .detalle-dato dt, .item-resultado-mini p, .mis-eventos-herramientas p, .sin-resultados-mini, .evento-card .evento-contenido .evento-fecha, .evento-card .evento-contenido .evento-metadatos, #eventos .evento-card .evento-contenido .categoria) { font-size: .85rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.etiqueta, .buscador-intro span, .titulo-seccion span, .mis-eventos-eyebrow, .item-resultado-mini h4, .aviso-enlace-local) { font-size: .8rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.logo-titulo h1, .mis-eventos-herramientas h3, .detalle-seccion h3, .mis-evento-contenido h3, .evento-contenido h3, #eventos .evento-card .evento-contenido h3) { font-size: 1.25rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.titulo-seccion h2, .buscador-intro h2, .mis-eventos-portada h2, .hero-evento-contenido h2) { font-size: 1.65rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .hero h2 { font-size: 2.2rem !important; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.evento-card, #mis-eventos .evento-card, #eventos .evento-card) { height: auto; min-height: 0; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.evento-card .evento-contenido, #mis-eventos .evento-card .evento-contenido, #eventos .evento-card .evento-contenido) { height: auto; min-height: 0; overflow: visible; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body :is(.evento-card .evento-contenido h3, #eventos .evento-card .evento-contenido h3, .evento-card .evento-contenido .evento-descripcion) { display: block; overflow: visible; -webkit-line-clamp: unset; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .evento-card .evento-contenido .evento-metadatos { display: flex; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .dia { min-height: 5rem; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .numero-dia { font-size: .8rem; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .dias-semana div { font-size: .7rem; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .calendario-cabecera h3 { font-size: 1.1rem; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .calendario-cabecera button { width: 2.25rem; height: 2.25rem; flex: 0 0 auto; }
+:root:is([data-texto="grande"],[data-texto="muy-grande"]) body .dia.evento .nombre-evento-calendario { font-size: .65rem; }
+:root[data-interlineado="true"] body :is(p, li, dd, .evento-metadatos, .mis-evento-metadatos, .nombre-evento-calendario, .ajustes-panel) { line-height: 1.85 !important; }
+:root[data-movimiento-reducido="true"] { scroll-behavior: auto !important; }
+:root[data-movimiento-reducido="true"] *, :root[data-movimiento-reducido="true"] *::before, :root[data-movimiento-reducido="true"] *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+
+@media (max-width: 760px) {
+  .contenedor-header { flex-direction: column; align-items: stretch; }
+  .contenedor-header nav { justify-content: center; }
+  .pagina-evento .contenedor-header nav { flex-wrap: wrap; }
+  .ajustes-panel { width: min(100%, 430px); padding: 18px; }
+}
+@media (max-width: 650px) {
+  body.pagina-inicio nav { flex-wrap: wrap; }
+  body.pagina-inicio nav .nav-ajustes { padding: 8px 9px; }
+  .busqueda { grid-template-columns: minmax(0,1fr); }
+  .calendario-contenedor { padding: 8px; }
+  .dia { padding: 2px; }
+}
+@media (max-width: 480px) {
+  :root:is([data-texto="grande"],[data-texto="muy-grande"]) body #eventos .evento-card { flex-direction: column; align-items: stretch; }
+  :root:is([data-texto="grande"],[data-texto="muy-grande"]) body #eventos .evento-card .evento-imagen { width: 100%; height: 7rem; flex-basis: auto; }
+  :root:is([data-texto="grande"],[data-texto="muy-grande"]) body .evento-card { grid-template-columns: minmax(0,1fr); }
+  :root:is([data-texto="grande"],[data-texto="muy-grande"]) body .evento-card .evento-imagen { width: 100%; height: 9rem; }
+  .calendario-cabecera { gap: 8px; }
+  .calendario-cabecera h3 { text-align: center; overflow-wrap: anywhere; }
+}

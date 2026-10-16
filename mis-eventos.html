@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="JS/ajustes.js"></script>
+    <title>Mis eventos | Ayuntamiento de Gilena</title>
+    <link rel="stylesheet" href="CSS/estilos.css" />
+    <link rel="stylesheet" href="CSS/ajustes.css" />
+    <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body class="pagina-inicio pagina-mis-eventos">
+    <header>
+      <div class="contenedor-header">
+        <div class="logo-titulo">
+          <img src="img/logo-gilena.png" alt="Logo Ayuntamiento de Gilena" />
+          <div>
+            <h1>Ayuntamiento de Gilena</h1>
+            <p>Calendario Digital Municipal</p>
+          </div>
+        </div>
+        <nav aria-label="Navegación principal">
+          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+          <a href="index.html#calendario"
+            ><i class="fa-solid fa-calendar-days"></i> Calendario</a
+          >
+          <a href="index.html#eventos"
+            ><i class="fa-solid fa-star"></i> Eventos</a
+          >
+          <a href="mis-eventos.html" aria-current="page"
+            ><i class="fa-solid fa-heart"></i> Mis eventos</a
+          >
+          <button type="button" class="nav-ajustes" data-abrir-ajustes aria-haspopup="dialog"><span class="icono-ajustes" aria-hidden="true">⚙</span> Ajustes</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mis-eventos-main">
+      <section id="mis-eventos" aria-labelledby="tituloMisEventos">
+        <div class="mis-eventos-portada">
+          <span class="mis-eventos-eyebrow"
+            ><i class="fa-solid fa-bookmark"></i> TU AGENDA PERSONAL</span
+          >
+          <h2 id="tituloMisEventos">Mis eventos</h2>
+          <p>
+            Guarda tus actividades favoritas y vuelve a ellas cuando quieras.
+          </p>
+          <span id="contadorFavoritos" class="contador-favoritos"></span>
+        </div>
+        <div class="mis-eventos-herramientas">
+          <div>
+            <h3><i class="fa-regular fa-calendar-check"></i> Tu agenda</h3>
+            <p>Los eventos que marques con el corazón aparecerán aquí.</p>
+          </div>
+          <div class="avisos-navegador">
+            <button
+              id="activarNotificaciones"
+              class="boton-notificaciones"
+              type="button"
+            >
+              <i class="fa-solid fa-bell"></i> Activar notificaciones
+            </button>
+            <span id="estadoNotificaciones" role="status"></span>
+          </div>
+        </div>
+        <p class="nota-avisos">Los avisos actuales se comprueban en el navegador mientras esta página está abierta y visible. No hay avisos push configurados para recibirlos con la web cerrada.</p>
+        <div id="listaMisEventos" class="lista-eventos"></div>
+        <div id="sinFavoritos" class="favoritos-vacio" hidden>
+          <span class="favoritos-vacio-icono"
+            ><i class="fa-solid fa-heart"></i
+          ></span>
+          <h3>No tienes eventos guardados</h3>
+          <p>
+            Guarda tus eventos favoritos pulsando el corazón para tenerlos
+            siempre a mano.
+          </p>
+          <a href="index.html#eventos" class="boton-principal"
+            >Explorar eventos <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <h3>Ayuntamiento de Gilena</h3>
+        <p>Calendario Digital Municipal</p>
+      </div>
+      <div class="footer-contacto">
+        <p><i class="fa-solid fa-location-dot"></i> Gilena, Sevilla</p>
+      </div>
+    </footer>
+    <script src="JS/estado-eventos.js"></script>
+    <script src="JS/formato-fechas.js"></script>
+    <script src="JS/imagenes-evento.js"></script>
+    <script src="JS/script.js"></script>
+  </body>
+</html>
