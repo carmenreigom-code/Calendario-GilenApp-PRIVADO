@@ -1,0 +1,17 @@
+.cuenta-main { min-height: 68vh; display: grid; place-items: center; padding: 40px 16px 70px; color: var(--aj-texto); }
+.cuenta-panel { width: min(100%,520px); display: grid; gap: 18px; padding: clamp(24px,4vw,40px); border: 1px solid var(--aj-borde); border-radius: 14px; background: var(--aj-tarjeta); }
+.cuenta-panel h1 { margin: 0; color: var(--aj-titulo); font-size: clamp(1.8rem,3vw,2.4rem); }
+.cuenta-panel p { margin: 0; line-height: 1.55; }
+.cuenta-eyebrow { font-size: .82rem; font-weight: 800; color: var(--aj-acento); }
+.cuenta-boton-pendiente { width: fit-content; min-height: 44px; padding: 10px 16px; border: 0; border-radius: 8px; background: #f4b41a; color: #1a2f4b; font: inherit; font-weight: 700; opacity: .65; }
+.cuenta-boton-pendiente[hidden] { display: none; }
+#mensajeCuenta { padding: 12px 14px; border-left: 4px solid var(--aj-acento); background: var(--aj-destacado); }
+.cuenta-enlace a { color: var(--aj-acento); font-weight: 700; }
+.cuenta-nota { color: var(--aj-suave); font-size: .92rem; }
+.cuenta-panel :is(a,button):focus-visible { outline: 3px solid var(--aj-foco,#bd6500); outline-offset: 3px; }
+.cuenta-formulario { display: grid; gap: 10px; }
+.cuenta-formulario label { font-weight: 700; }
+.cuenta-formulario input { min-height: 46px; padding: 10px; border: 1px solid var(--aj-borde); border-radius: 8px; background: var(--aj-tarjeta); color: var(--aj-texto); font: inherit; }
+.cuenta-formulario button { justify-self: start; min-height: 46px; padding: 10px 18px; border: 0; border-radius: 8px; background: #f4b41a; color: #1a2f4b; font: inherit; font-weight: 700; cursor: pointer; }
+.cuenta-formulario input:focus-visible { outline: 3px solid var(--aj-foco,#bd6500); outline-offset: 3px; }
+#mensajeCuenta:empty { display: none; }

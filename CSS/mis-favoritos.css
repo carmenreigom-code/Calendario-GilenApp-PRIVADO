@@ -1,0 +1,114 @@
+.favoritos-main { max-width: 1200px; margin: 0 auto; padding: clamp(20px,4vw,48px) 20px 70px; color: var(--aj-texto); }
+.favoritos-main [hidden] { display: none !important; }
+.favoritos-main h1,.favoritos-main h2,.favoritos-main h3 { color: var(--aj-titulo); }
+.favoritos-intro { margin-bottom: 24px; }
+.favoritos-intro h1 { margin: 0 0 5px; font-size: clamp(1.9rem,4vw,2.7rem); }
+.favoritos-intro p { margin: 0; color: var(--aj-suave); }
+.favoritos-filtros-lista { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 18px; }
+.favoritos-filtros-lista label { display: grid; gap: 5px; flex: 1 1 220px; font-weight: 700; }
+.favoritos-filtros-lista input,.favoritos-filtros-lista select { min-height: 44px; padding: 8px; border: 1px solid var(--aj-borde); border-radius: 8px; background: var(--aj-tarjeta); color: var(--aj-texto); font: inherit; }
+.favoritos-dia-lista { max-height: 55vh; overflow: auto; }
+.favoritos-dia-lista p { padding: 8px; border-bottom: 1px solid var(--aj-borde); }
+.favoritos-google,.favoritos-recuperacion { background: var(--aj-tarjeta); border: 1px solid var(--aj-borde); border-radius: 14px; padding: 20px; margin-bottom: 28px; }
+.favoritos-google { display: grid; grid-template-columns: 1fr auto; gap: 10px 24px; align-items: center; }
+.favoritos-google h2,.favoritos-recuperacion h2 { font-size: 1.25rem; margin: 0 0 7px; }
+.favoritos-google p,.favoritos-recuperacion p { margin: 0; }
+.favoritos-google #estadoGoogle { grid-column: 1 / -1; color: var(--aj-suave); }
+.favoritos-google-controles,.copia-acciones { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+.favoritos-main button,.favoritos-main select,.favoritos-main input { font: inherit; }
+.favoritos-google button,.favoritos-recuperacion button,.favoritos-card-acciones button,.favoritos-vacio a,.copia-acciones button { min-height: 44px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--aj-borde); background: var(--aj-tarjeta); color: var(--aj-texto); cursor: pointer; text-decoration: none; }
+#conectarGoogle,#confirmarCopia,.favoritos-vacio a { background: #f4b41a; border-color: #f4b41a; color: #1a2f4b; font-weight: 700; }
+.favoritos-google label,.favoritos-filtros label,#grupoCalendarioCopia { display: grid; gap: 5px; font-weight: 600; }
+.favoritos-main select,.favoritos-main input { min-height: 44px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--aj-borde); background: var(--aj-tarjeta); color: var(--aj-texto); }
+.favoritos-filtros { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 22px; }
+.favoritos-filtros label:first-child { flex: 1 1 250px; }.favoritos-filtros label:last-child { flex: 0 1 230px; }
+.favoritos-listado h2 { font-size: 1.45rem; margin: 22px 0 16px; }
+.favoritos-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(min(100%,460px),1fr)); gap: 18px; }
+.favoritos-card { overflow: hidden; border: 1px solid var(--aj-borde); border-radius: 12px; background: var(--aj-tarjeta); display: flex; flex-direction: column; }
+.favoritos-imagen { width: 100%; height: 190px; object-fit: cover; }.favoritos-imagen img { width: 100%; height: 100%; object-fit: cover; }
+.favoritos-card-cuerpo { padding: 18px; display: flex; flex-direction: column; flex: 1; gap: 6px; }
+.favoritos-card h3 { margin: 2px 0 8px; font-size: 1.2rem; }.favoritos-card p { margin: 0 0 4px; }.favoritos-card p i { width: 22px; }
+.favoritos-card .favoritos-aviso { border-left: 4px solid #bc6017; padding: 7px 10px; margin: 4px 0 10px; background: var(--aj-destacado); }
+.favoritos-card-acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; }
+.favoritos-card-acciones a { min-height: 44px; padding: 10px 14px; border-radius: 8px; background: #f4b41a; color: #1a2f4b; font-weight: 700; text-decoration: none; }
+.favoritos-card-acciones button { font-size: .92rem; }
+.favoritos-vacio { text-align: center; padding: 35px 16px; }.favoritos-vacio a { display: inline-flex; align-items: center; margin-top: 10px; }
+#anterioresPlegable { margin-top: 28px; }#anterioresPlegable summary { min-height: 44px; padding: 10px 0; cursor: pointer; font-size: 1.2rem; font-weight: 700; }
+.favoritos-main dialog { max-width: min(520px,calc(100vw - 28px)); border: 1px solid var(--aj-borde); border-radius: 14px; padding: 0; background: var(--aj-tarjeta); color: var(--aj-texto); }.favoritos-main dialog::backdrop { background: #0009; }
+.copia-contenido { padding: 24px; display: grid; gap: 16px; }.copia-contenido h2,.copia-contenido p { margin: 0; }
+.favoritos-main :is(a,button,input,select,summary):focus-visible { outline: 3px solid var(--aj-foco,#bd6500); outline-offset: 3px; }
+@media (max-width: 700px) { .favoritos-google { grid-template-columns: 1fr; }.favoritos-google #estadoGoogle { grid-column: 1; }.favoritos-google-controles { align-items: stretch; flex-direction: column; }.favoritos-filtros label:last-child { flex: 1 1 250px; } }
+.favoritos-calendario { background: var(--aj-tarjeta); border: 1px solid var(--aj-borde); border-radius: 14px; padding: clamp(12px,2.5vw,24px); margin-bottom: 30px; }
+.favoritos-calendario-cabecera,.favoritos-listado-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+.favoritos-calendario-cabecera h2,.favoritos-listado-cabecera h2 { margin: 0 0 5px; }
+.favoritos-calendario-cabecera p,.favoritos-listado-cabecera p { margin: 0; color: var(--aj-suave); text-transform: capitalize; }
+.favoritos-mes-controles { display: flex; flex-wrap: wrap; gap: 8px; }
+.favoritos-mes-controles button,#verTodoMes,.favoritos-filtros button { min-height: 44px; padding: 9px 13px; border: 1px solid var(--aj-borde); border-radius: 8px; background: var(--aj-tarjeta); color: var(--aj-texto); cursor: pointer; }
+.favoritos-filtros { margin: 20px 0 16px; gap: 8px; }
+.favoritos-filtros button[aria-pressed="true"] { background: #f4b41a; border-color: #f4b41a; color: #1a2f4b; font-weight: 700; }
+.favoritos-calendarios { margin: 0 0 18px; border: 1px solid var(--aj-borde); border-radius: 8px; padding: 8px 12px; }
+.favoritos-calendarios summary { min-height: 38px; cursor: pointer; font-weight: 700; }
+#listaCalendarios { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 10px 2px; max-height: 180px; overflow: auto; }
+#listaCalendarios label { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; }
+#listaCalendarios input { min-height: auto; width: 18px; height: 18px; accent-color: #b87600; }
+.favoritos-semana,.favoritos-dias { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); }
+.favoritos-semana span { text-align: center; font-weight: 700; padding: 10px 3px; }
+.favoritos-dias { border-top: 1px solid var(--aj-borde); border-left: 1px solid var(--aj-borde); }
+.favoritos-dia,.favoritos-dia-vacio { min-width: 0; min-height: 112px; border: 0; border-right: 1px solid var(--aj-borde); border-bottom: 1px solid var(--aj-borde); border-radius: 0; background: var(--aj-tarjeta); color: var(--aj-texto); text-align: left; padding: 8px; }
+.favoritos-dia { display: flex; flex-direction: column; gap: 5px; }
+.favoritos-dia:hover { background: var(--aj-destacado); }
+.favoritos-dia.es-hoy .favoritos-numero { background: #f4b41a; color: #1a2f4b; border-radius: 50%; min-width: 27px; height: 27px; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+.favoritos-dia.es-seleccionado { box-shadow: inset 0 0 0 3px var(--aj-acento); background: var(--aj-destacado); }
+.favoritos-chips { display: grid; gap: 3px; width: 100%; }
+.favoritos-chip,.favoritos-mas { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 5px; padding: 3px 5px; font-size: .75rem; font-weight: 650; }
+.favoritos-chip.es-municipal { background: #f4b41a; color: #1a2f4b; }.favoritos-chip.es-google { background: var(--aj-destacado); color: var(--aj-texto); border: 1px solid var(--aj-borde); }
+.favoritos-mini-indicadores { display: none; }
+.favoritos-listado-cabecera { margin-bottom: 20px; }
+.favoritos-listado-cabecera h2 { font-size: 1.45rem; }
+.favoritos-etiquetas { display: flex; flex-wrap: wrap; gap: 6px; }
+.favoritos-etiquetas span { padding: 4px 7px; border: 1px solid var(--aj-borde); border-radius: 5px; background: var(--aj-destacado); font-size: .8rem; font-weight: 700; }
+.favoritos-card-google { border-left: 4px solid var(--aj-acento); }
+.favoritos-card-google .favoritos-card-cuerpo { min-height: 230px; }
+.favoritos-card-acciones .favoritos-enlace-google { background: var(--aj-tarjeta); color: var(--aj-texto); border: 1px solid var(--aj-borde); font-weight: 600; }
+.favoritos-dias { border-radius: 10px; overflow: hidden; }
+.favoritos-dia { padding: 0; position: relative; transition: background-color .15s ease; }
+.favoritos-dia-abrir { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 5px; width: 100%; min-height: 70px; padding: 9px; border: 0; border-radius: 0; background: transparent; color: var(--aj-texto); font: inherit; text-align: left; cursor: pointer; }
+.favoritos-dia-abrir:focus-visible,.favoritos-mas:focus-visible { outline: 3px solid var(--aj-foco,#bd6500); outline-offset: -4px; position: relative; z-index: 2; }
+.favoritos-dia.es-fuera { background: var(--aj-destacado); }
+.favoritos-dia.es-fuera .favoritos-dia-abrir { color: var(--aj-suave); }
+.favoritos-dia.es-seleccionado { background: var(--aj-destacado); box-shadow: none; }
+.favoritos-dia.es-seleccionado .favoritos-numero { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.favoritos-dia.es-hoy,.favoritos-dia.es-hoy.es-seleccionado { box-shadow: inset 0 0 0 3px var(--aj-boton,#f4b41a); z-index: 1; }
+.favoritos-hoy-texto { font-size: .7rem; font-weight: 800; color: var(--aj-texto); }
+.favoritos-numero { font-size: 1.05rem; font-weight: 700; }
+.favoritos-chip { border-left: 4px solid var(--evento-color,var(--aj-borde)); background: color-mix(in srgb,var(--evento-color,var(--aj-borde)) 13%,var(--aj-tarjeta)); color: var(--aj-texto); }
+.favoritos-chip.es-municipal,.favoritos-chip.es-google { background: color-mix(in srgb,var(--evento-color,var(--aj-borde)) 13%,var(--aj-tarjeta)); color: var(--aj-texto); border: 0; border-left: 4px solid var(--evento-color,var(--aj-borde)); }
+button.favoritos-mas { display: block; width: 100%; min-height: 26px; padding: 2px 8px 7px; border: 0; background: transparent; color: var(--aj-acento); text-align: left; font: inherit; font-size: .75rem; font-weight: 800; cursor: pointer; }
+.favoritos-card { border-left: 4px solid var(--evento-color,var(--aj-borde)); }
+.favoritos-card-google { border-left-color: var(--evento-color,var(--aj-borde)); }
+.favoritos-card .favoritos-categoria { align-self: flex-start; border-left: 4px solid var(--evento-color,var(--aj-borde)); background: color-mix(in srgb,var(--evento-color,var(--aj-borde)) 13%,var(--aj-tarjeta)); color: var(--aj-texto); }
+@media (prefers-reduced-motion: reduce) { .favoritos-dia { transition: none; } }
+@media (max-width: 760px) {
+  .favoritos-dia,.favoritos-dia-vacio { min-height: 68px; padding: 5px; }
+  .favoritos-dia { padding: 0; }
+  .favoritos-dia-abrir { min-height: 68px; padding: 6px; }
+  .favoritos-chips { display: none; }
+  .favoritos-mini-indicadores { display: block; margin-top: auto; font-size: .8rem; white-space: nowrap; }
+  .favoritos-semana span { font-size: .85rem; }
+}
+@media (max-width: 480px) {
+  .favoritos-main { padding-inline: 12px; }
+  .favoritos-mes-controles { width: 100%; justify-content: space-between; }
+  .favoritos-mes-controles button span { display: none; }
+  .favoritos-dia,.favoritos-dia-vacio { min-height: 56px; }
+  .favoritos-dia-abrir { min-height: 56px; padding: 5px; }
+  .favoritos-hoy-texto { display: none; }
+  .favoritos-mini-indicadores { font-size: .68rem; }
+  .favoritos-filtros button { flex: 1 1 auto; font-size: .85rem; }
+}
+.favorito-cambios { margin-top:10px; padding:10px; border-radius:8px; background:color-mix(in srgb,var(--evento-color,#4d7594) 10%,transparent); }
+.favorito-cambios summary { cursor:pointer; font-weight:700; }
+.favorito-cambios dl div { display:grid; gap:3px; margin-top:8px; }
+.favorito-cambios dt { font-weight:700; }
+.favorito-cambios dd { display:grid; gap:2px; margin:0; }
+.favorito-no-disponible { min-height:0; border-style:dashed; }

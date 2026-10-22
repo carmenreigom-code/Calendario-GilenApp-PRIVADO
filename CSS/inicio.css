@@ -1,0 +1,34 @@
+/* Ritmo común para la agenda pública. Los colores siguen los ajustes compartidos. */
+body.pagina-inicio main { width:100%; max-width:none; margin:0; padding:0; }
+.pagina-inicio .contenido-index { width:100%; max-width:1250px; margin-inline:auto; padding:0 25px 45px; }
+@media(max-width:650px) { .pagina-inicio .contenido-index { padding:0 16px 35px; } }
+html:has(body.pagina-inicio) { scroll-padding-top:0; }
+.pagina-inicio .buscador-seccion { min-width:0; margin-bottom:30px; }
+.pagina-inicio .buscador-seccion > h2 { margin:0 0 14px; color:var(--aj-titulo); font-size:1.45rem; line-height:1.25; letter-spacing:-.02em; }
+.pagina-inicio .busqueda { gap:12px; padding:0; border:0; border-radius:0; background:none; box-shadow:none; }
+.pagina-inicio .busqueda :is(input,select) { min-height:48px; border:1px solid var(--aj-borde); border-radius:9px; background:var(--aj-tarjeta); color:var(--aj-texto); font:inherit; font-size:1rem; }
+.pagina-inicio .busqueda :is(input,select):focus-visible { outline:3px solid var(--aj-foco); outline-offset:2px; }
+.pagina-inicio .filtros-agenda { margin-top:13px; padding:0; background:none; border:0; }
+.pagina-inicio .resumen-filtros { flex-basis:100%; margin:0; color:var(--aj-suave); }
+.pagina-inicio #calendario { margin-top:0; }
+.pagina-inicio :is(#inicio, #calendario, #eventos, #informacion, #tituloProximosEventos) { scroll-margin-top:calc(var(--cabecera-altura, 90px) + 20px); }
+.pagina-inicio .titulo-seccion { flex-wrap:wrap; gap:14px; }
+.pagina-inicio .calendario-dias .dia:not(.vacio) { border:1px solid var(--aj-borde); background:var(--aj-tarjeta); color:var(--aj-texto); }
+.pagina-inicio .calendario-dias .dia.seleccionado { box-shadow:inset 0 0 0 2px var(--aj-acento); }
+.pagina-inicio .calendario-dias .dia.es-hoy { outline:3px solid var(--aj-foco); outline-offset:-3px; }
+.pagina-inicio .calendario-dias .dia:focus-visible { outline:3px solid var(--aj-foco); outline-offset:1px; }
+.pagina-inicio .calendario-dias .nombre-evento-calendario { display:flex; flex-direction:column; gap:2px; margin-top:4px; border:0; border-left:3px solid var(--evento-color,#607d8b); border-radius:4px; padding:5px; background:color-mix(in srgb,var(--evento-color,#607d8b) 14%,var(--aj-tarjeta)); color:var(--aj-texto); text-align:left; overflow:hidden; }
+.pagina-inicio .calendario-dias .nombre-evento-calendario > span { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; }
+.pagina-inicio .calendario-dias .nombre-evento-calendario::before { content:none; }
+.fiestas-destacadas[hidden] { display:none; }
+.fiestas-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:20px; }
+.fiesta-tarjeta { display:flex; flex-direction:column; min-width:0; border-radius:10px; overflow:hidden; color:var(--aj-titulo); background:var(--aj-tarjeta); text-decoration:none; box-shadow:0 4px 16px rgba(26,47,75,.07); }
+.fiesta-tarjeta h3 { padding:16px 18px; font-size:1.1rem; line-height:1.35; overflow-wrap:anywhere; }
+.fiesta-imagen { position:relative; aspect-ratio:16/10; background:var(--aj-destacado); }
+.fiesta-imagen .imagen-evento-marco { position:absolute; inset:0; width:100%; height:100%; }
+.fiesta-imagen .imagen-evento-marco > img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.fiesta-imagen .modo-fotografia > img { object-fit:cover; }
+.fiesta-tarjeta:focus-visible { outline:3px solid var(--aj-foco); outline-offset:3px; }
+@media(max-width:768px) { .pagina-inicio .calendario-dias .nombre-evento-calendario { padding:3px 2px; font-size:.62rem; } }
+@media(max-width:560px) { .pagina-inicio .busqueda { grid-template-columns:minmax(0,1fr); } .pagina-inicio .calendario-dias .nombre-evento-calendario { font-size:.55rem; } .pagina-inicio .dias-semana div { padding-inline:0; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }

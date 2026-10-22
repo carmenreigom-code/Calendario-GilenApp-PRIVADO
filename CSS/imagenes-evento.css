@@ -117,3 +117,6 @@
   .ficha-evento .hero-evento-media.modo-fotografia { aspect-ratio: 16/9; }
   .ficha-evento .hero-evento-media.sin-imagen { height: 96px; width: 96px; }
 }
+
+.imagen-pie {padding:8px 12px;font-size:.9em;overflow-wrap:anywhere;}
+.ficha-evento .detalle-galeria img.imagen-uso,.ficha-evento .detalle-cartel img.imagen-uso {object-fit:var(--uso-fit,contain);object-position:var(--uso-x,50%) var(--uso-y,50%);}
