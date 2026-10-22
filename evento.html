@@ -9,23 +9,27 @@
     <link rel="stylesheet" href="CSS/ajustes.css" />
     <link rel="stylesheet" href="CSS/evento.css" />
     <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link rel="stylesheet" href="CSS/tarjetas-evento.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="CSS/cabecera.css" />
   </head>
   <body class="pagina-evento">
-    <header>
-      <div class="contenedor-header">
-        <div class="logo-titulo">
-          <img src="img/logo-gilena.png" alt="Logo Ayuntamiento" />
-          <div><h1>Ayuntamiento de Gilena</h1><p>Calendario Digital Municipal</p></div>
-        </div>
-        <nav><a href="mis-eventos.html"><i class="fa-solid fa-heart"></i> Mis eventos</a><button type="button" class="nav-ajustes" data-abrir-ajustes aria-haspopup="dialog"><span class="icono-ajustes" aria-hidden="true">⚙</span> Ajustes</button></nav>
-      </div>
-    </header>
+    <header id="cabeceraPublica"></header>
     <main id="detalleEventoContenedor"></main>
+    <footer id="informacion"></footer>
+    <script src="JS/perfiles.js"></script>
+    <script src="JS/contenido-web.js"></script>
+    <script src="JS/cabecera-publica.js"></script>
     <script src="JS/estado-eventos.js"></script>
     <script src="JS/formato-fechas.js"></script>
     <script src="JS/calendario-externo.js"></script>
+    <script src="JS/biblioteca-imagenes.js"></script>
     <script src="JS/imagenes-evento.js"></script>
+    <script src="JS/contenido-bloques.js"></script>
+    <script src="JS/informacion-evento.js"></script>
+    <script src="JS/favoritos-municipales.js"></script>
+    <script src="JS/colores-eventos.js"></script>
+    <script src="JS/tarjetas-evento.js"></script>
     <script src="JS/render-evento.js"></script>
     <script>
       let eventosDetalle = [];
@@ -39,6 +43,14 @@
       if (actual) {
         contenedor.innerHTML = DetalleEvento.renderizar(actual, { relacionados: eventosDetalle });
         DetalleEvento.activar(contenedor, actual);
+        try {
+          const origen = sessionStorage.getItem("origenDetalleGilena");
+          const volver = contenedor.querySelector(".evento-volver");
+          if (volver && origen === "favoritos") { volver.href = "mis-eventos.html?restaurar=1"; volver.lastChild.textContent = " Volver a Mis favoritos"; }
+          else if (volver && origen === "destacados") volver.href = "index.html?restaurar=1#destacados";
+          else if (volver && origen === "inicio") volver.href = "index.html?restaurar=1#calendario";
+          sessionStorage.removeItem("origenDetalleGilena");
+        } catch (error) {}
       } else {
         contenedor.innerHTML = '<div class="evento-no-encontrado"><h2>Evento no encontrado</h2><a href="index.html" class="boton-principal">Volver al inicio</a></div>';
       }

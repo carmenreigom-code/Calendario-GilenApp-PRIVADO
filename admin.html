@@ -7,20 +7,32 @@
     <link rel="stylesheet" href="CSS/estilos.css" />
     <link rel="stylesheet" href="CSS/evento.css" />
     <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link rel="stylesheet" href="CSS/cabecera.css" />
+    <link rel="stylesheet" href="CSS/ajustes.css" />
+    <link rel="stylesheet" href="CSS/admin-calendario.css" />
+    <link rel="stylesheet" href="CSS/destacados-inicio.css" />
+    <link rel="stylesheet" href="CSS/tarjetas-evento.css" />
+    <link rel="stylesheet" href="CSS/admin-informacion.css" />
+    <link rel="stylesheet" href="CSS/admin-gestion.css" />
+    <link rel="stylesheet" href="CSS/admin-herramientas.css" />
+    <link rel="stylesheet" href="CSS/admin-interfaz.css" />
+    <script src="JS/ajustes.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
   </head>
   <body class="body-admin-editor">
     <header class="cms-topbar">
-      <a class="cms-brand" href="index.html">
-        <img src="img/logo-gilena.png" alt="" />
-        <span><strong>Ayuntamiento de Gilena</strong><small>Gestión municipal</small></span>
-      </a>
-      <div class="cms-topbar-derecha">
-        <span class="cms-contexto"><i class="fa-solid fa-gear"></i> Administrador</span>
-        <span class="estado-guardado" id="estadoGuardado">Creando nuevo evento...</span>
-        <a class="cms-volver" href="index.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver web</a>
+      <div class="cms-topbar-inner">
+        <a class="cms-brand" href="index.html">
+          <img src="img/logo-gilena.png" alt="" />
+          <span><strong>Ayuntamiento de Gilena</strong><small>Gestión municipal</small></span>
+        </a>
+        <div class="cms-topbar-derecha">
+          <span class="cms-contexto"><i class="fa-solid fa-gear"></i> Administrador</span>
+          <span class="estado-guardado" id="estadoGuardado" role="status" aria-live="polite">Sin cambios pendientes</span>
+          <a class="cms-volver" href="index.html"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver web</a>
+        </div>
       </div>
     </header>
 
@@ -28,10 +40,10 @@
       <aside class="cms-sidebar" aria-label="Navegación de administración">
         <p class="cms-nav-label">Administración</p>
         <button class="cms-nav-link activo" data-vista="inicio"><i class="fa-solid fa-house"></i> Inicio</button>
-        <button class="cms-nav-link" data-vista="eventos"><i class="fa-solid fa-calendar-days"></i> Eventos <span id="navTotalEventos">0</span></button>
-        <button class="cms-nav-link" data-vista="editor" onclick="nuevoEvento()"><i class="fa-solid fa-circle-plus"></i> Crear evento</button>
-        <button class="cms-nav-link" data-vista="configuracion"><i class="fa-solid fa-gear"></i> Configuración</button>
-        <div class="cms-sidebar-pie"><img src="img/logo-gilena.png" alt="" /><span>Calendario Digital Municipal</span></div>
+        <button class="cms-nav-link" data-vista="eventos" data-gestion-destino="listado"><i class="fa-solid fa-calendar-days"></i> Eventos <span id="navTotalEventos">0</span></button>
+        <button class="cms-nav-link" data-vista="calendario"><i class="fa-regular fa-calendar"></i> Calendario</button>
+<button class="cms-nav-link" data-vista="configuracion"><i class="fa-solid fa-gear" aria-hidden="true"></i> Configuración</button>
+<div class="cms-nav-secundaria"><details id="herramientasSitio"><summary>Herramientas del sitio</summary><button class="cms-nav-link" data-vista="contenido-web">Contenido web</button></details></div><div class="cms-sidebar-pie"><img src="img/logo-gilena.png" alt="" /><span>Calendario Digital Municipal</span></div>
       </aside>
 
       <main class="cms-main">
@@ -54,13 +66,31 @@
           <div class="cms-page-heading"><div><span class="cms-eyebrow">AGENDA MUNICIPAL</span><h1>Eventos</h1><p>Consulta, filtra y administra eventos publicados, borradores y archivados.</p></div><button class="btn-primario" type="button" data-vista="editor" onclick="nuevoEvento()"><i class="fa-solid fa-plus"></i> Crear evento</button></div>
           <section class="cms-panel">
             <div class="cms-filterbar"><label class="cms-search"><i class="fa-solid fa-magnifying-glass"></i><input id="buscarAdmin" type="search" placeholder="Buscar evento..." /></label><label class="cms-category-filter"><span class="sr-only">Filtrar por categoría</span><select id="filtroAdmin"><option value="todos">Todas las categorías</option><option value="cultura">🎭 Cultura</option><option value="deportes">⚽ Deportivo</option><option value="fiestas">🎉 Fiesta</option><option value="arte">🎨 Arte</option><option value="concierto">🎵 Concierto</option><option value="cine">🎬 Cine</option><option value="educacion">📚 Educación</option><option value="ayuntamiento">🏛️ Ayuntamiento</option><option value="familiar">👨‍👩‍👧‍👦 Familiar</option><option value="mercado">🛍️ Mercado</option><option value="naturaleza">🌳 Naturaleza</option><option value="gastronomia">🧑‍🍳 Gastronomía</option><option value="juventud">Juventud</option><option value="otros">Otros</option></select></label><label class="cms-category-filter"><span class="sr-only">Filtrar por estado</span><select id="filtroEstadoAdmin"><option value="todos">Todos los estados</option><option value="publicado">Publicados</option><option value="borrador">Borradores</option><option value="archivado">Archivados</option></select></label></div>
+            <p id="resumenAdmin" class="cms-filter-result" role="status" aria-live="polite"></p><button type="button" id="limpiarFiltrosAdmin" class="btn-secundario" hidden>Limpiar filtros</button>
             <div class="cms-table-wrap"><table class="cms-table cms-table-eventos"><thead><tr><th>Evento</th><th>Fecha</th><th>Categoría</th><th>Estado</th><th>Plazas</th><th>Acciones</th></tr></thead><tbody id="tablaEventos"></tbody></table></div>
             <p class="cms-vacio" id="vacioEventos" hidden>No hay eventos que coincidan con la búsqueda.</p>
+          </section>
+          <section class="cms-panel cms-fiestas-panel" aria-labelledby="tituloFiestasAdmin">
+            <div class="cms-panel-heading"><div><h2 id="tituloFiestasAdmin">Fiestas destacadas de Gilena</h2><p>Elige los eventos de este bloque de la portada y su orden. Solo se muestran los publicados. Los cambios se guardan al instante.</p></div></div>
+            <div class="cms-fiesta-selector"><label for="seleccionarFiesta">Evento publicado<select id="seleccionarFiesta"></select></label><button type="button" class="btn-secundario" id="anadirFiesta">Añadir a fiestas</button></div>
+            <ol id="listaFiestasAdmin" class="cms-fiestas-lista"></ol>
+          </section>
+        </section>
+
+        <section class="cms-vista" id="vista-imagenes" hidden></section>
+
+        <section class="cms-vista" id="vista-calendario" hidden>
+          <div class="cms-page-heading"><div><span class="cms-eyebrow">GESTIÓN DE LA AGENDA</span><h1>Calendario</h1><p>Consulta y cambia las fechas de los eventos guardados.</p></div></div>
+          <section class="cms-panel cms-calendar-panel" aria-label="Calendario de administración">
+            <div class="cms-calendar-tools"><div class="cms-calendar-navigation"><button class="btn-secundario" type="button" id="calMesAnterior">Mes anterior</button><button class="btn-secundario" type="button" id="calHoy">Hoy</button><button class="btn-secundario" type="button" id="calMesSiguiente">Mes siguiente</button></div><h2 id="calTituloMes" aria-live="polite"></h2><div class="cms-calendar-filters"><label>Estado <select id="calFiltroEstado"><option value="activos">Sin archivados</option><option value="todos">Todos</option><option value="publicado">Publicados</option><option value="borrador">Borradores</option><option value="archivado">Archivados</option></select></label><label>Categoría <select id="calFiltroCategoria"><option value="todos">Todas</option></select></label></div></div>
+            <p class="cms-calendar-help">Selecciona un evento para editarlo o cambiar su fecha. Con ratón también puedes arrastrarlo. En móvil y con teclado usa «Cambiar fecha».</p>
+            <div class="cms-calendar-surface" id="calSuperficie"><div class="cms-calendar-edge" id="calBordeAnterior" aria-hidden="true">Mes anterior</div><div class="cms-calendar-grid" id="calCuadricula"></div><div class="cms-calendar-edge" id="calBordeSiguiente" aria-hidden="true">Mes siguiente</div></div>
+            <div id="calResultado" class="cms-calendar-result" role="status" aria-live="polite" hidden></div>
           </section>
         </section>
 
         <section class="cms-vista" id="vista-editor" hidden>
-          <div class="cms-page-heading"><div><span class="cms-eyebrow">GESTIÓN DE LA AGENDA</span><h1 id="tituloVistaEditor">Crear evento</h1><p>Completa los datos del evento municipal.</p><span class="cms-editor-status" id="estadoPublicacionEditor">Sin publicar</span></div><div class="cms-heading-actions"><span class="cms-autosave" id="estadoBorrador"><i class="fa-regular fa-floppy-disk"></i> Autoguardado temporal</span><button class="btn-secundario" type="button" onclick="abrirVistaPrevia()"><i class="fa-regular fa-eye"></i> Vista previa</button><button class="btn-secundario" type="button" onclick="guardarEvento('borrador')"><i class="fa-regular fa-floppy-disk"></i> Guardar como borrador</button><button class="btn-primario" type="button" onclick="guardarEvento('publicado')"><i class="fa-solid fa-globe"></i> Publicar</button></div></div>
+          <div class="cms-page-heading"><div><span class="cms-eyebrow">GESTIÓN DE LA AGENDA</span><h1 id="tituloVistaEditor">Crear evento</h1><p id="nombreEventoEditor">Evento sin título</p><span class="cms-editor-status" id="estadoPublicacionEditor">Sin publicar</span></div><div class="cms-heading-actions"><span class="cms-autosave" id="estadoBorrador"><i class="fa-regular fa-floppy-disk"></i> Autoguardado temporal</span><button class="btn-secundario" type="button" onclick="abrirVistaPrevia()"><i class="fa-regular fa-eye"></i> Vista previa</button><button class="btn-secundario" type="button" onclick="guardarEvento('borrador')"><i class="fa-regular fa-floppy-disk"></i> Guardar como borrador</button><button class="btn-primario" type="button" onclick="guardarEvento('publicado')"><i class="fa-solid fa-globe"></i> Publicar</button></div></div>
 
           <div class="cms-editor-layout">
             <div class="cms-editor-columna">
@@ -78,6 +108,7 @@
 
               <section class="cms-panel cms-form-panel">
                 <div class="cms-panel-heading"><div><h2>Ubicación</h2><p>Dónde tendrá lugar la actividad.</p></div><span class="cms-step">02</span></div>
+                <div class="meta-item"><label for="lugarHabitual">Lugar habitual</label><select id="lugarHabitual"><option value="">Selecciona un lugar</option><option value="otro">Otro lugar</option></select></div>
                 <div class="meta-item"><label for="lugar">Lugar / ubicación</label><input type="text" id="lugar" placeholder="Ej. Plaza de España" /></div>
                 <div class="meta-item"><label for="direccion">Dirección completa</label><input type="text" id="direccion" placeholder="Calle, número, Gilena" /></div>
                 <div class="meta-item"><label for="googleMapsUrl">Enlace de Google Maps (opcional)</label><input type="url" id="googleMapsUrl" placeholder="https://maps.google.com/..." /></div>
@@ -119,14 +150,14 @@
                 <div class="cms-panel-heading"><div><h2>Descripción</h2><p>Presenta los detalles de forma clara y organizada.</p></div><span class="cms-step">03</span></div>
                 <div class="meta-item cms-summary-field"><label for="descripcion">Resumen breve <small>Se muestra en la agenda pública</small></label><textarea id="descripcion" rows="2" placeholder="Una frase para presentar el evento"></textarea></div>
                 <label class="cms-editor-label">Información detallada</label>
-                <div class="cms-special-tools" aria-label="Insertar bloques informativos">
-                  <span>Insertar bloque:</span><button type="button" data-bloque="ubicacion">📍 Ubicación</button><button type="button" data-bloque="horario">🕐 Horario</button><button type="button" data-bloque="informacion">ℹ️ Información</button><button type="button" data-bloque="aviso">⚠️ Aviso</button>
+                <div class="cms-special-tools" aria-label="Insertar texto informativo">
+                  <span>Insertar texto:</span><button type="button" data-bloque="ubicacion">📍 Ubicación</button><button type="button" data-bloque="horario">🕐 Horario</button><button type="button" data-bloque="informacion">ℹ️ Información</button><button type="button" data-bloque="aviso">⚠️ Aviso</button>
                 </div>
                 <div id="toolbar" class="cms-quill-toolbar">
-                  <span class="ql-formats"><select class="ql-header"><option selected></option><option value="1"></option><option value="2"></option><option value="3"></option></select><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
-                  <span class="ql-formats"><select class="ql-color"></select><select class="ql-background"></select><select class="ql-align"></select></span>
+                  <span class="ql-formats"><select class="ql-header"><option selected></option><option value="3"></option><option value="4"></option></select><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                  <span class="ql-formats"><select class="ql-align"></select></span>
                   <span class="ql-formats"><button class="ql-list" value="ordered"></button><button class="ql-list" value="bullet"></button><button class="ql-indent" value="-1"></button><button class="ql-indent" value="+1"></button></span>
-                  <span class="ql-formats"><button class="ql-link"></button><button class="ql-image"></button><button class="ql-video"></button><button class="ql-divider" type="button" title="Insertar separador">―</button></span>
+                  <span class="ql-formats"><button class="ql-link"></button><button class="ql-image"></button><button class="ql-divider" type="button" title="Insertar separador">―</button></span>
                   <span class="ql-formats"><button class="ql-undo" type="button" title="Deshacer"><i class="fa-solid fa-rotate-left"></i></button><button class="ql-redo" type="button" title="Rehacer"><i class="fa-solid fa-rotate-right"></i></button><button class="ql-clean" title="Limpiar formato"></button></span>
                 </div>
                 <div id="editor-container" class="cms-quill-editor"></div>
@@ -154,6 +185,13 @@
                 <input type="hidden" id="imagenTarjeta" value="" />
               </section>
               <section class="cms-panel cms-form-panel">
+                <div class="cms-panel-heading"><div><h2>Imagen del carrusel de inicio</h2><p>Opcional. Recomendamos una fotografía horizontal. Si no eliges una, se usará una imagen del evento. Este encuadre solo afecta al carrusel.</p></div></div>
+                <div id="carruselPrevia" class="cms-carrusel-previa" aria-label="Vista previa del carrusel"></div>
+                <div class="cms-image-actions"><button class="btn-secundario" type="button" onclick="campo('inputImagenCarrusel').click()">Seleccionar imagen</button><button class="cms-link-image" type="button" onclick="pedirUrlCarrusel()">Usar URL</button><button class="cms-link-image" type="button" onclick="actualizarImagenCarrusel('')">Quitar</button></div>
+                <input type="file" id="inputImagenCarrusel" accept="image/*" hidden /><input type="hidden" id="imagenCarrusel" value="" />
+                <div data-ajustes-imagen="imagenCarrusel"></div>
+              </section>
+              <section class="cms-panel cms-form-panel">
                 <div class="cms-panel-heading"><div><h2>Cartel completo</h2><p>Sección independiente del detalle: se mostrará completo y se podrá ampliar para leerlo.</p></div></div>
                 <div id="cartelPrevia" class="cms-image-preview cms-poster-preview" hidden><img id="cartelPreviaImagen" alt="Vista previa del cartel" /></div>
                 <div class="cms-image-actions"><button class="btn-secundario" type="button" onclick="campo('inputCartel').click()">Seleccionar cartel</button><button class="cms-link-image" type="button" onclick="pedirUrlImagenAdicional('cartel')">Usar URL</button><button class="cms-link-image" type="button" onclick="actualizarCartel('')">Quitar</button></div>
@@ -168,7 +206,8 @@
               <section class="cms-panel cms-form-panel">
                 <div class="cms-panel-heading"><div><h2>Información adicional</h2><p>Acceso, aforo y reservas.</p></div></div>
                 <div class="cms-form-grid cms-form-grid-2">
-                  <div class="meta-item"><label for="precio">Precio</label><input type="text" id="precio" placeholder="Gratis o importe" /></div>
+                  <div class="meta-item"><label for="tipoPrecio">Tipo de acceso</label><select id="tipoPrecio"><option value="sin-especificar">Sin especificar</option><option value="gratis">Gratis</option><option value="pago">De pago</option></select></div>
+                  <div class="meta-item"><label for="precio">Precio o información adicional</label><input type="text" id="precio" placeholder="Ej. 5 €" /></div>
                   <div class="meta-item"><label for="aforo">Aforo / plazas</label><input type="number" id="aforo" min="1" placeholder="Opcional" /></div>
                   <div class="meta-item cms-span-2"><label for="reservas">Estado de reservas</label><select id="reservas"><option value="">No indicar</option><option value="abiertas">Reservas abiertas</option><option value="no">No se necesita reserva</option><option value="agotadas">Plazas completas</option></select></div>
                   <div class="meta-item cms-span-2"><label for="urlReserva">Enlace de reserva</label><input type="url" id="urlReserva" placeholder="https://..." /></div>
@@ -188,20 +227,49 @@
                 <label class="cms-check"><input type="checkbox" id="mostrarCompartir" /> Mostrar botones para compartir</label>
                 <label class="cms-check"><input type="checkbox" id="mostrarRelacionados" /> Mostrar eventos relacionados</label>
               </section>
-              <div class="cms-editor-actions"><button class="btn-secundario" type="button" onclick="cancelarEdicion()">Cancelar</button><button class="btn-secundario" type="button" onclick="guardarEvento('borrador')"><i class="fa-regular fa-floppy-disk"></i> Guardar como borrador</button><button class="btn-primario" type="button" onclick="guardarEvento('publicado')"><i class="fa-solid fa-globe"></i> Publicar</button></div>
             </aside>
           </div>
         </section>
 
         <section class="cms-vista" id="vista-configuracion" hidden>
-          <div class="cms-page-heading"><div><span class="cms-eyebrow">PREFERENCIAS</span><h1>Configuración</h1><p>Información técnica sobre el almacenamiento de la agenda.</p></div></div>
+          <div class="cms-page-heading"><div><span class="cms-eyebrow">PREFERENCIAS</span><h1>Configuración</h1><p>Apariencia, accesibilidad y gestión de la agenda.</p></div></div>
+          <section class="cms-panel" id="ajustesAdminIntegrados" aria-label="Apariencia y accesibilidad"></section>
+          <details class="cms-panel cms-opciones" id="configOpcionesAvanzadas"><summary>Opciones avanzadas</summary><div class="cms-opciones-contenido">
+            <details class="cms-opciones" id="configDestacados"><summary>Destacados del inicio</summary><div class="cms-opciones-contenido">
+              <p>Selecciona hasta seis eventos publicados, vigentes, no cancelados y con imagen. El carrusel completa los huecos con próximos eventos elegibles.</p>
+              <label for="seleccionarDestacado">Evento elegible</label><select id="seleccionarDestacado"></select><button class="btn-secundario" type="button" id="anadirDestacado">Añadir destacado</button>
+              <p id="contadorDestacados">0 / 6</p><div id="listaDestacadosAdmin" class="cms-lista-destacados"></div>
+            </div></details>
+          </div></details>
           <section class="cms-panel cms-config-panel"><span class="cms-stat-icon"><i class="fa-solid fa-database"></i></span><div><h2>Almacenamiento local</h2><p>Los eventos de este calendario se guardan en el almacenamiento local de este navegador. Para conservarlos, utiliza el mismo navegador y dispositivo.</p><small>Clave de almacenamiento: <code>eventos</code></small></div></section>
-          <section class="cms-panel cms-backup-panel"><h2>Copias de seguridad</h2><p>Exporta todos los eventos o importa un archivo JSON creado por este panel.</p><div class="cms-backup-actions"><button class="btn-secundario" type="button" id="exportarEventos"><i class="fa-solid fa-download"></i> Exportar eventos</button><label for="archivoImportacion">Archivo JSON</label><input type="file" id="archivoImportacion" accept=".json,application/json" /></div><fieldset class="cms-import-options"><legend>Cómo importar</legend><label><input type="radio" name="modoImportacion" value="anadir" checked /> Añadir a los eventos existentes</label><label><input type="radio" name="modoImportacion" value="sustituir" /> Sustituir los eventos actuales</label></fieldset><button class="btn-primario" type="button" id="importarEventos"><i class="fa-solid fa-file-import"></i> Importar eventos</button><p id="estadoImportacion" role="status" aria-live="polite"></p></section>
+          <section class="cms-panel cms-lugares-panel" aria-labelledby="tituloLugaresHabituales">
+            <div class="cms-panel-heading"><div><h2 id="tituloLugaresHabituales">Lugares habituales</h2><p>Guarda ubicaciones para completar rápidamente los eventos. Los eventos ya guardados conservan su propia copia.</p></div></div>
+            <form id="formLugarHabitual" class="cms-lugar-form">
+              <input type="hidden" id="lugarHabitualId" />
+              <div class="meta-item"><label for="lugarHabitualNombre">Nombre</label><input id="lugarHabitualNombre" required /></div>
+              <div class="meta-item"><label for="lugarHabitualDireccion">Dirección</label><input id="lugarHabitualDireccion" /></div>
+              <div class="meta-item"><label for="lugarHabitualMapa">Enlace opcional a Google Maps</label><input id="lugarHabitualMapa" type="url" placeholder="https://maps.google.com/..." /></div>
+              <div class="cms-lugar-acciones"><button class="btn-primario" type="submit">Guardar lugar</button><button class="btn-secundario" type="button" id="cancelarLugarHabitual" hidden>Cancelar edición</button></div>
+              <p id="estadoLugares" role="status" aria-live="polite"></p>
+            </form>
+            <div id="listaLugaresHabituales" class="cms-lugares-lista"></div>
+          </section>
+          <section class="cms-panel cms-backup-panel"><h2>Copias de seguridad</h2><p>Exporta eventos, contenido público, plantillas, papelera, archivos de la biblioteca y configuración editorial. Las imágenes de la biblioteca se incluyen en el JSON para poder recuperarlas en otro navegador. Al importar, el contenido público incluido sustituye al actual; los apartados que falten en una copia antigua se conservan.</p><div class="cms-backup-actions"><button class="btn-secundario" type="button" id="exportarEventos"><i class="fa-solid fa-download"></i> Exportar eventos</button><label for="archivoImportacion">Archivo JSON</label><input type="file" id="archivoImportacion" accept=".json,application/json" /></div><fieldset class="cms-import-options"><legend>Cómo importar</legend><label><input type="radio" name="modoImportacion" value="anadir" checked /> Añadir a los eventos existentes</label><label><input type="radio" name="modoImportacion" value="sustituir" /> Sustituir los eventos actuales</label></fieldset><button class="btn-primario" type="button" id="importarEventos"><i class="fa-solid fa-file-import"></i> Importar eventos</button><p id="estadoImportacion" role="status" aria-live="polite"></p></section>
         </section>
       </main>
     </div>
 
-    <div class="cms-modal-backdrop" id="modalVistaPrevia" hidden role="dialog" aria-modal="true" aria-labelledby="previewTitulo"><div class="cms-preview-modal"><div class="cms-modal-heading"><div><span class="cms-eyebrow">VISTA PREVIA</span><h2 id="previewTitulo">Así se verá el evento</h2></div><button type="button" class="cms-modal-close" onclick="cerrarVistaPrevia()" aria-label="Cerrar vista previa"><i class="fa-solid fa-xmark"></i></button></div><div id="previewEventoCompleto" class="cms-preview-content"></div></div></div>
+    <div class="cms-modal-backdrop" id="modalVistaPrevia" hidden role="dialog" aria-modal="true" aria-labelledby="previewTitulo"><div class="cms-preview-modal"><div class="cms-modal-heading"><div><span class="cms-eyebrow">VISTA PREVIA</span><h2 id="previewTitulo">Así se verá el evento</h2></div><button type="button" class="cms-modal-close" onclick="cerrarVistaPrevia()" aria-label="Cerrar vista previa"><i class="fa-solid fa-xmark"></i></button></div><div class="cms-preview-anchos" role="group" aria-label="Ancho de vista previa"><button type="button" class="btn-secundario" data-preview-ancho="escritorio" aria-pressed="true">Escritorio</button><button type="button" class="btn-secundario" data-preview-ancho="movil" aria-pressed="false">Móvil (390 px)</button></div><div id="previewEventoCompleto" class="cms-preview-content"></div></div></div>
+
+    <div class="cms-modal-backdrop" id="calModal" hidden role="dialog" aria-modal="true" aria-labelledby="calModalTitulo"><div class="cms-calendar-dialog"><h2 id="calModalTitulo">Evento</h2><p id="calModalDetalle"></p><div id="calModalAcciones" class="cms-calendar-dialog-actions"></div><button type="button" class="btn-secundario" id="calModalCerrar">Cerrar</button></div></div>
+
+    <div class="cms-mensajes" id="mensajesAdmin" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="cms-confirmacion-fondo" id="confirmacionAdmin" hidden>
+      <section class="cms-confirmacion" role="alertdialog" aria-modal="true" aria-labelledby="confirmacionTitulo" aria-describedby="confirmacionTexto">
+        <h2 id="confirmacionTitulo">Confirmar acción</h2><p id="confirmacionTexto"></p><div class="meta-item" id="confirmacionNombreGrupo" hidden><label for="confirmacionNombre">Escribe el título completo del evento</label><input id="confirmacionNombre" autocomplete="off"></div>
+        <div class="cms-confirmacion-acciones"><button type="button" class="btn-secundario" data-confirmar="cancelar">Cancelar</button><button type="button" class="cms-confirmar-peligro" data-confirmar="aceptar">Confirmar</button></div>
+      </section>
+    </div>
 
     <div class="cajon-eventos-fondo" id="fondoCajon" onclick="cerrarCajonEventos()"></div>
     <aside class="cajon-eventos" id="cajonEventos" aria-label="Tus eventos"><div class="cajon-cabecera"><h2>Tus Eventos</h2><button type="button" onclick="cerrarCajonEventos()" class="btn-cerrar-cajon" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button></div><div class="cajon-lista" id="listaEventosAdmin"></div><button class="btn-nuevo-cajon" type="button" onclick="nuevoEvento()"><i class="fa-solid fa-plus"></i> Crear Nuevo Evento</button></aside>
@@ -214,8 +282,27 @@
     <script src="JS/estado-eventos.js"></script>
     <script src="JS/formato-fechas.js"></script>
     <script src="JS/calendario-externo.js"></script>
+    <script src="JS/biblioteca-imagenes.js"></script>
     <script src="JS/imagenes-evento.js"></script>
+    <script src="JS/contenido-bloques.js"></script>
+    <script src="JS/informacion-evento.js"></script>
+    <script src="JS/destacados-config.js"></script>
+    <script src="JS/colores-eventos.js"></script>
+    <script src="JS/tarjetas-evento.js"></script>
     <script src="JS/render-evento.js"></script>
+    <script src="JS/contenido-web.js"></script>
+    <script src="JS/gestion-admin-datos.js"></script>
+    <script src="JS/admin-bloques.js"></script>
+    <script src="JS/admin-informacion.js"></script>
+    <script src="JS/admin-gestion.js"></script>
+    <script src="JS/revision-eventos.js"></script>
+    <script src="JS/admin-operaciones.js"></script>
+    <script src="JS/admin-menus.js"></script>
+    <script src="JS/admin-listado.js"></script>
+    <script src="JS/admin-biblioteca.js"></script>
     <script src="JS/admin.js"></script>
+    <script src="JS/admin-calendario.js"></script>
+    <script src="JS/admin-interfaz.js"></script>
+    <script src="JS/admin-organizacion.js"></script>
   </body>
 </html>

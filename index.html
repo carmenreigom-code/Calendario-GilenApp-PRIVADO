@@ -10,97 +10,49 @@
     <link rel="stylesheet" href="CSS/estilos.css" />
     <link rel="stylesheet" href="CSS/ajustes.css" />
     <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link rel="stylesheet" href="CSS/agenda-personal.css" />
+    <link rel="stylesheet" href="CSS/tarjetas-evento.css" />
 
     <!-- Iconos -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="CSS/cabecera.css" />
+    <link rel="stylesheet" href="CSS/destacados-inicio.css" />
+    <link rel="stylesheet" href="CSS/inicio.css" />
   </head>
 
   <body class="pagina-inicio">
     <!-- ENCABEZADO -->
-    <header>
-      <div class="contenedor-header">
-        <div class="logo-titulo">
-          <!-- Sustituye esta imagen por el logo oficial -->
-          <img src="img/logo-gilena.png" alt="Logo Ayuntamiento de Gilena" />
+    <header id="cabeceraPublica"></header>
 
-          <div>
-            <h1>Ayuntamiento de Gilena</h1>
-            <p>Calendario Digital Municipal</p>
-          </div>
+    <!-- PORTADA Y BUSCADOR -->
+    <main id="inicio" tabindex="-1">
+      <section class="destacados-inicio" id="destacados" aria-labelledby="tituloPortadaInicio">
+        <div class="portada-texto">
+          <p class="portada-etiqueta">Agenda municipal</p>
+          <h1 id="tituloPortadaInicio">Todo lo que pasa en Gilena</h1>
+          <p class="portada-descripcion">Cultura, fiestas y planes para disfrutar de nuestro pueblo</p>
+          <a class="portada-calendario" href="#calendario">Ver calendario <span aria-hidden="true">→</span></a>
         </div>
-
-        <nav>
-          <a href="index.html">
-            <i class="fa-solid fa-house"></i>
-            Inicio
-          </a>
-
-          <a href="#calendario">
-            <i class="fa-solid fa-calendar-days"></i>
-            Calendario
-          </a>
-
-          <a href="#eventos">
-            <i class="fa-solid fa-star"></i>
-            Eventos
-          </a>
-
-          <a href="mis-eventos.html">
-            <i class="fa-solid fa-heart"></i>
-            Mis eventos
-          </a>
-
-          <button type="button" class="nav-ajustes" data-abrir-ajustes aria-haspopup="dialog">
-            <span class="icono-ajustes" aria-hidden="true">⚙</span> Ajustes
-          </button>
-
-          <a href="#informacion">
-            <i class="fa-solid fa-circle-info"></i>
-            Información
-          </a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- PORTADA -->
-    <section class="hero">
-      <div class="hero-contenido">
-        <span class="etiqueta">
-          <i class="fa-solid fa-calendar"></i>
-          AGENDA MUNICIPAL
-        </span>
-
-        <h2>TODO LO QUE OCURRE EN GILENA</h2>
-
-        <p>
-          Consulta fiestas, cultura, deportes y todas las actividades programadas en el municipio.
-        </p>
-
-        <a href="#calendario" class="boton-principal">
-          Ver calendario
-          <i class="fa-solid fa-arrow-down"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- BUSCADOR -->
-    <main>
+        <section class="evento-destacado-carrusel" id="eventoDestacadoCarrusel" aria-label="Eventos destacados">
+          <div class="destacados-viewport" id="destacadosViewport" aria-live="off"></div>
+          <button type="button" class="destacado-flecha destacado-anterior" id="destacadoAnterior" aria-label="Evento anterior" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" /></svg></button>
+          <button type="button" class="destacado-flecha destacado-siguiente" id="destacadoSiguiente" aria-label="Evento siguiente" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" /></svg></button>
+        </section>
+      </section>
+      <div class="contenido-index">
       <section class="buscador-seccion" aria-labelledby="tituloBuscador">
-        <div class="buscador-intro">
-          <span>AGENDA MUNICIPAL</span>
-          <h2 id="tituloBuscador">Encuentra un evento</h2>
-          <p>Busca una actividad o filtra los eventos por categoría.</p>
-        </div>
+        <h2 id="tituloBuscador">Encuentra tu plan</h2>
       <div class="busqueda">
         <div class="campo-busqueda">
           <i class="fa-solid fa-magnifying-glass"></i>
 
           <!-- Cambiamos oninput a la nueva función -->
+          <label class="sr-only" for="buscador">Buscar por título, descripción o lugar</label>
           <input
-            type="text"
+            type="search"
             id="buscador"
             placeholder="Buscar un evento..."
             oninput="buscarEventoDesplegable()"
@@ -119,7 +71,8 @@
         <div class="campo-filtro">
           <i class="fa-solid fa-filter"></i>
 
-          <select id="filtroCategoria" onchange="filtrarEventos()">
+          <label class="sr-only" for="filtroCategoria">Categoría del evento</label>
+          <select id="filtroCategoria">
             <option value="todos">Todas las categorías</option>
             <option value="cultura">Cultura</option><option value="deportes">Deportivo</option><option value="fiestas">Fiesta</option>
             <option value="arte">Arte</option><option value="concierto">Concierto</option><option value="cine">Cine</option>
@@ -130,26 +83,42 @@
         </div>
       </div>
 
+      <div class="filtros-agenda" aria-label="Filtros rápidos de eventos">
+        <div class="filtros-fecha" role="group" aria-label="Periodo">
+          <button type="button" class="filtro-agenda activo" data-filtro-fecha="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="filtro-agenda" data-filtro-fecha="hoy" aria-pressed="false">Hoy</button>
+          <button type="button" class="filtro-agenda" data-filtro-fecha="semana" aria-pressed="false">Esta semana</button>
+          <button type="button" class="filtro-agenda" data-filtro-fecha="fin-semana" aria-pressed="false">Este fin de semana</button>
+        </div>
+        <button type="button" class="filtro-agenda filtro-gratis" id="filtroGratis" aria-pressed="false"><i class="fa-solid fa-ticket" aria-hidden="true"></i> Gratis</button>
+        <button type="button" class="limpiar-filtros" id="limpiarFiltros" hidden>Limpiar filtros</button>
+        <p class="resumen-filtros" id="resumenFiltros" role="status" aria-live="polite"></p>
+        <div class="filtros-activos" id="filtrosActivos" aria-label="Filtros activos"></div>
+      </div>
+
       </section>
 
       <!-- CALENDARIO -->
-      <section id="calendario" class="seccion">
+      <section id="calendario" class="seccion" tabindex="-1">
         <div class="titulo-seccion">
           <div>
-            <h2>Calendario de eventos</h2>
+            <h2>Calendario municipal</h2>
             <p class="subtitulo-seccion">Consulta las actividades y eventos programados en Gilena.</p>
           </div>
+          <button type="button" class="boton-imprimir-agenda" id="abrirAgendaImprimible"><i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir agenda</button>
         </div>
 
         <div class="calendario-contenedor">
           <div class="calendario-cabecera">
-            <button onclick="mesAnterior()" aria-label="Mes anterior">
+            <button type="button" onclick="mesAnterior()" aria-label="Mes anterior">
               <span aria-hidden="true">‹</span>
             </button>
 
             <h3 id="mesActual"></h3>
 
-            <button onclick="mesSiguiente()" aria-label="Mes siguiente">
+            <button type="button" class="calendario-hoy" onclick="irAHoy()">Hoy</button>
+
+            <button type="button" onclick="mesSiguiente()" aria-label="Mes siguiente">
               <span aria-hidden="true">›</span>
             </button>
           </div>
@@ -171,12 +140,13 @@
       </section>
 
       <!-- EVENTOS -->
-      <section id="eventos" class="seccion">
+      <section id="eventos" class="seccion" tabindex="-1">
         <div class="titulo-seccion">
           <div>
-            <span>PRÓXIMAMENTE</span>
-            <h2>Próximos eventos</h2>
+            <h2 id="tituloProximosEventos" tabindex="-1">Próximos eventos</h2>
+            <p id="periodoDiaSeleccionado" class="subtitulo-seccion" hidden></p>
           </div>
+          <button type="button" class="limpiar-filtros" id="verPeriodoCompleto" hidden>Ver período completo</button>
         </div>
 
         <div id="listaEventos" class="lista-eventos">
@@ -186,34 +156,63 @@
         <p id="sinResultados" class="sin-resultados">
           No se han encontrado eventos.
         </p>
+
+        <details class="eventos-anteriores" id="eventosAnteriores">
+          <summary>Eventos anteriores <span id="contadorAnteriores"></span></summary>
+          <div id="listaEventosAnteriores" class="lista-eventos"></div>
+          <p id="sinResultadosAnteriores" class="sin-resultados">No hay eventos anteriores que coincidan con los filtros.</p>
+        </details>
       </section>
 
+      <section id="fiestasDestacadas" class="fiestas-destacadas seccion" aria-labelledby="tituloFiestas" hidden>
+        <div class="titulo-seccion"><h2 id="tituloFiestas">Fiestas destacadas de Gilena</h2></div>
+        <div id="listaFiestasDestacadas" class="fiestas-grid"></div>
+      </section>
+
+      </div>
     </main>
 
+    <div class="panel-dia-fondo" id="panelDiaFondo" hidden>
+      <section class="panel-dia" role="dialog" aria-modal="true" aria-labelledby="panelDiaTitulo" tabindex="-1">
+        <div class="panel-dia-cabecera">
+          <div><span>AGENDA DEL DÍA</span><h2 id="panelDiaTitulo"></h2></div>
+          <button type="button" id="cerrarPanelDia" aria-label="Cerrar eventos del día"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <div id="panelDiaLista" class="panel-dia-lista"></div>
+      </section>
+    </div>
+
+    <div class="agenda-impresion-fondo" id="agendaImpresionFondo" hidden>
+      <section class="agenda-impresion-dialogo" role="dialog" aria-modal="true" aria-labelledby="agendaImpresionTitulo">
+        <div class="agenda-impresion-controles">
+          <div><span>VISTA PREVIA</span><h2 id="agendaImpresionTitulo">Imprimir agenda</h2></div>
+          <button type="button" id="cerrarAgendaImprimible" aria-label="Cerrar vista previa">×</button>
+        </div>
+        <div class="agenda-selector-periodo">
+          <label for="agendaTipoPeriodo">Período<select id="agendaTipoPeriodo"><option value="semana">Semana</option><option value="mes">Mes</option></select></label>
+          <label for="agendaFechaPeriodo">Fecha de referencia<input type="date" id="agendaFechaPeriodo" /></label>
+          <button type="button" class="boton-principal" id="imprimirAgenda"><i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir o guardar PDF</button>
+        </div>
+        <div id="agendaImprimible" class="agenda-imprimible"></div>
+      </section>
+    </div>
+
     <!-- FOOTER -->
-    <footer id="informacion">
-      <div>
-        <h3>Ayuntamiento de Gilena</h3>
+    <footer id="informacion" tabindex="-1"></footer>
 
-        <p>Calendario Digital Municipal</p>
-      </div>
-
-      <div class="footer-contacto">
-        <p>
-          <i class="fa-solid fa-location-dot"></i>
-          Gilena, Sevilla
-        </p>
-
-        <p>
-          <i class="fa-solid fa-envelope"></i>
-          Información municipal
-        </p>
-      </div>
-    </footer>
-
+    <script src="JS/perfiles.js"></script>
+    <script src="JS/contenido-web.js"></script>
+    <script src="JS/cabecera-publica.js"></script>
     <script src="JS/estado-eventos.js"></script>
     <script src="JS/formato-fechas.js"></script>
+    <script src="JS/biblioteca-imagenes.js"></script>
     <script src="JS/imagenes-evento.js"></script>
+    <script src="JS/colores-eventos.js"></script>
+    <script src="JS/favoritos-municipales.js"></script>
+    <script src="JS/tarjetas-evento.js"></script>
     <script src="JS/script.js"></script>
+    <script src="JS/destacados-config.js"></script>
+    <script src="JS/destacados-inicio.js"></script>
+    <script src="JS/inicio.js"></script>
   </body>
 </html>
