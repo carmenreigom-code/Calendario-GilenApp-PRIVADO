@@ -1,0 +1,152 @@
+{
+  "version": 6,
+  "fechaExportacion": "2026-10-22T12:00:00.000Z",
+  "eventos": [
+    {
+      "id": "demo-noche-arte-2026",
+      "estado": "publicado",
+      "titulo": "DEMO · Noche de Arte y Cine en Gilena",
+      "subtitulo": "Música, ilustración y un corto de animación",
+      "categoria": "arte",
+      "fecha": "2026-11-21",
+      "fechaFin": "",
+      "hora": "18:30",
+      "horaFin": "22:00",
+      "lugar": "Plaza municipal (ubicación de ejemplo)",
+      "direccion": "Gilena, Sevilla",
+      "organizador": "Ayuntamiento de Gilena · contenido de demostración",
+      "estadoActividad": "programado",
+      "tipoPrecio": "gratis",
+      "precio": "",
+      "reservas": "no",
+      "mostrarComoLlegar": false,
+      "mostrarCompartir": true,
+      "mostrarRelacionados": true,
+      "destacarInicio": true,
+      "imagen": "img/demo/noche-arte-plaza.webp",
+      "imagenTarjeta": "img/demo/noche-arte-plaza.webp",
+      "imagenCarrusel": "img/demo/noche-arte-plaza.webp",
+      "cartel": "img/demo/noche-arte-cartel.webp",
+      "imagenAjustes": { "modo": "fotografia", "x": 50, "y": 48 },
+      "imagenTarjetaAjustes": { "modo": "fotografia", "x": 50, "y": 55 },
+      "imagenCarruselAjustes": { "modo": "fotografia", "x": 50, "y": 45 },
+      "imagenMetadatos": {
+        "imagen": { "alt": "Actuación nocturna en una plaza andaluza ilustrativa", "pie": "Imagen generada para este evento de prueba." },
+        "imagenTarjeta": { "alt": "Concierto de ejemplo en una plaza" },
+        "imagenCarrusel": { "alt": "Noche cultural de demostración" },
+        "cartel": { "alt": "Cartel Noche de Arte Gilena, 21 de noviembre a las 18:30", "pie": "Cartel de demostración; no anuncia un acto real." }
+      },
+      "descripcion": "Un ejemplo visual para comprobar la portada, el cartel, el programa, los bloques de contenido y el reproductor de vídeo.",
+      "descripcion_larga": "<p>Esta actividad es <strong>ficticia</strong> y sirve para probar cómo se presenta una propuesta cultural con fotografía, cartel y contenido enriquecido.</p><ul><li>Concierto de apertura.</li><li>Muestra de ilustración.</li><li>Proyección de un corto de animación usado solo como prueba técnica.</li></ul>",
+      "programa": [
+        { "fecha": "2026-11-21", "hora": "18:30", "titulo": "Bienvenida musical", "detalle": "Actuación de apertura de demostración.", "lugar": "Escenario principal" },
+        { "fecha": "2026-11-21", "hora": "19:15", "titulo": "Ilustración en directo", "detalle": "Bloque ficticio para revisar textos y horarios.", "lugar": "Zona de talleres" },
+        { "fecha": "2026-11-21", "hora": "20:30", "titulo": "Corto de animación", "detalle": "Se utiliza Big Buck Bunny como vídeo de muestra; no forma parte de una programación real.", "lugar": "Pantalla exterior" }
+      ],
+      "bloques": [
+        { "tipo": "destacado", "visible": true, "variante": "nota", "texto": "Evento de demostración. Las fechas, el lugar y la programación son inventados." },
+        { "tipo": "video", "visible": true, "titulo": "Vídeo de prueba: Big Buck Bunny", "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ", "imagen": "img/demo/noche-arte-plaza.webp", "transcripcion": "Corto de animación Big Buck Bunny, de Blender. Se incluye únicamente para comprobar la carga voluntaria del reproductor." }
+      ]
+    },
+    {
+      "id": "demo-ruta-olivar-2026",
+      "estado": "publicado",
+      "titulo": "DEMO · Ruta familiar del olivar",
+      "categoria": "naturaleza",
+      "fecha": "2026-11-28",
+      "fechaFin": "",
+      "hora": "09:30",
+      "horaFin": "13:00",
+      "lugar": "Punto de encuentro de ejemplo",
+      "direccion": "Gilena, Sevilla",
+      "organizador": "Ayuntamiento de Gilena · contenido de demostración",
+      "edadRecomendada": "A partir de 8 años",
+      "accesibilidad": "El recorrido ilustrativo incluye senderos de tierra; consulta las condiciones reales antes de organizar una ruta.",
+      "traer": "Agua, calzado cómodo y protección solar.",
+      "estadoActividad": "programado",
+      "tipoPrecio": "sin-especificar",
+      "precio": "",
+      "reservas": "no",
+      "mostrarComoLlegar": false,
+      "mostrarCompartir": true,
+      "mostrarRelacionados": true,
+      "destacarInicio": true,
+      "imagen": "img/demo/ruta-olivar.webp",
+      "imagenTarjeta": "img/demo/ruta-olivar.webp",
+      "imagenCarrusel": "img/demo/ruta-olivar-cartel.webp",
+      "cartel": "img/demo/ruta-olivar-cartel.webp",
+      "galeria": ["img/demo/ruta-olivar.webp", "img/demo/olivos-detalle.webp"],
+      "imagenAjustes": { "modo": "fotografia", "x": 50, "y": 53 },
+      "imagenTarjetaAjustes": { "modo": "fotografia", "x": 50, "y": 50 },
+      "imagenCarruselAjustes": { "modo": "cartel", "x": 50, "y": 50 },
+      "imagenMetadatos": {
+        "imagen": { "alt": "Familia caminando entre olivares en una imagen ilustrativa" },
+        "imagenTarjeta": { "alt": "Paseo familiar de ejemplo entre olivares" },
+        "imagenCarrusel": { "alt": "Cartel de la ruta del olivar" },
+        "cartel": { "alt": "Cartel Ruta del Olivar, 28 de noviembre a las 09:30" },
+        "galeria:0": { "alt": "Familia recorriendo un sendero entre olivares", "pie": "Primera imagen de la galería de prueba." },
+        "galeria:1": { "alt": "Olivos y camino rural en imagen de demostración", "pie": "Segunda imagen generada para probar el visor." }
+      },
+      "descripcion": "Una ruta ficticia para revisar cómo aparecen una categoría de naturaleza, una fotografía, un cartel vertical y una galería.",
+      "descripcion_larga": "<p>Este paseo <strong>no está convocado</strong>. Se ha creado para probar la lectura del detalle en móvil y escritorio, el visor de la galería y la información práctica.</p>",
+      "programa": [
+        { "fecha": "2026-11-28", "hora": "09:30", "titulo": "Encuentro del grupo", "detalle": "Información de ejemplo para comprobar el programa.", "lugar": "Punto de salida" },
+        { "fecha": "2026-11-28", "hora": "10:00", "titulo": "Paseo por el olivar", "detalle": "Tramo ilustrativo con pausas para observar el paisaje.", "lugar": "Sendero rural" },
+        { "fecha": "2026-11-28", "hora": "12:30", "titulo": "Regreso", "detalle": "Fin de la actividad de muestra.", "lugar": "Punto de salida" }
+      ],
+      "bloques": [
+        { "tipo": "texto", "visible": true, "titulo": "Antes de salir", "texto": "La ruta y su punto de encuentro son ficticios. La imagen adicional permite probar la galería y el visor ampliado." }
+      ]
+    },
+    {
+      "id": "demo-taller-pan-2026",
+      "estado": "publicado",
+      "titulo": "DEMO · Taller de pan y aceite para familias",
+      "subtitulo": "Dos jornadas de cocina y productos de proximidad",
+      "categoria": "gastronomia",
+      "fecha": "2026-12-05",
+      "fechaFin": "2026-12-06",
+      "hora": "11:00",
+      "horaFin": "14:00",
+      "lugar": "Centro municipal de ejemplo",
+      "direccion": "Gilena, Sevilla",
+      "indicacionesAcceso": "Entrada accesible indicada solo como ejemplo.",
+      "organizador": "Ayuntamiento de Gilena · contenido de demostración",
+      "estadoActividad": "programado",
+      "tipoPrecio": "pago",
+      "precio": "8 €",
+      "reservas": "abiertas",
+      "inscripcionInicio": "2026-10-01T09:00",
+      "inscripcionFin": "2026-12-04T20:00",
+      "urlReserva": "https://example.com/",
+      "observaciones": "El botón de reserva lleva a example.com para probar la interfaz; no permite reservar ni pagar.",
+      "mostrarComoLlegar": false,
+      "mostrarCompartir": true,
+      "mostrarRelacionados": true,
+      "destacarInicio": true,
+      "imagen": "img/demo/taller-pan.webp",
+      "imagenTarjeta": "img/demo/taller-pan.webp",
+      "imagenCarrusel": "img/demo/taller-pan.webp",
+      "imagenAjustes": { "modo": "fotografia", "x": 50, "y": 50 },
+      "imagenTarjetaAjustes": { "modo": "fotografia", "x": 50, "y": 52 },
+      "imagenCarruselAjustes": { "modo": "fotografia", "x": 50, "y": 50 },
+      "imagenMetadatos": {
+        "imagen": { "alt": "Manos preparando pan en un taller familiar ilustrativo" },
+        "imagenTarjeta": { "alt": "Preparación de pan en una actividad de ejemplo" },
+        "imagenCarrusel": { "alt": "Taller familiar de cocina de demostración" }
+      },
+      "descripcion": "Evento ficticio de dos días para probar la selección de jornadas, el precio, el plazo de inscripción y la acción principal.",
+      "descripcion_larga": "<p>El taller es una <strong>demostración de diseño</strong>. No existe una inscripción municipal asociada.</p><p>Las personas participantes prepararían una masa sencilla y conocerían usos del aceite de oliva local.</p>",
+      "programa": [
+        { "fecha": "2026-12-05", "hora": "11:00", "titulo": "Bienvenida e ingredientes", "detalle": "Presentación de utensilios y normas de higiene.", "lugar": "Aula de cocina" },
+        { "fecha": "2026-12-05", "hora": "12:00", "titulo": "Preparación de la masa", "detalle": "Mezcla, amasado y reposo.", "lugar": "Aula de cocina" },
+        { "fecha": "2026-12-06", "hora": "11:00", "titulo": "Horneado", "detalle": "Segunda jornada de demostración.", "lugar": "Aula de cocina" },
+        { "fecha": "2026-12-06", "hora": "12:30", "titulo": "Cata de aceite", "detalle": "Actividad ficticia para mostrar el programa por jornadas.", "lugar": "Mesa comunitaria" }
+      ],
+      "bloques": [
+        { "tipo": "mixto", "visible": true, "titulo": "Así sería el taller", "imagen": "img/demo/taller-pan.webp", "alt": "Mesa con ingredientes para preparar pan", "pie": "Imagen generada para la demostración.", "lado": "izquierda", "ancho": "ampliada", "texto": "Un espacio para aprender en familia. El contenido y las fechas son de prueba." },
+        { "tipo": "destacado", "visible": true, "variante": "aviso", "texto": "No completes pagos ni aportes datos personales: este evento y el enlace de reserva son una demostración." }
+      ]
+    }
+  ]
+}

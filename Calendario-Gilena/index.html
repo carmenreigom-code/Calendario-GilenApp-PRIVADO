@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="JS/comun/ajustes.js"></script>
+
+    <title>Ayuntamiento de Gilena | Calendario Municipal</title>
+
+    <link rel="stylesheet" href="CSS/estilos.css" />
+    <link rel="stylesheet" href="CSS/ajustes.css" />
+    <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link rel="stylesheet" href="CSS/agenda-personal.css" />
+    <link rel="stylesheet" href="CSS/tarjetas-evento.css" />
+
+    <!-- Iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="CSS/cabecera.css" />
+    <link rel="stylesheet" href="CSS/destacados-inicio.css" />
+    <link rel="stylesheet" href="CSS/inicio.css" />
+  </head>
+
+  <body class="pagina-inicio">
+    <!-- ENCABEZADO -->
+    <header id="cabeceraPublica"></header>
+
+    <!-- PORTADA Y BUSCADOR -->
+    <main id="inicio" tabindex="-1">
+      <section class="destacados-inicio" id="destacados" aria-labelledby="tituloPortadaInicio">
+        <div class="portada-texto">
+          <p class="portada-etiqueta">Agenda municipal</p>
+          <h1 id="tituloPortadaInicio">Todo lo que pasa en Gilena</h1>
+          <p class="portada-descripcion">Cultura, fiestas y planes para disfrutar de nuestro pueblo</p>
+          <a class="portada-calendario" href="#calendario">Ver calendario <span aria-hidden="true">→</span></a>
+        </div>
+        <section class="evento-destacado-carrusel" id="eventoDestacadoCarrusel" aria-label="Eventos destacados">
+          <div class="destacados-viewport" id="destacadosViewport" aria-live="off"></div>
+          <button type="button" class="destacado-flecha destacado-anterior" id="destacadoAnterior" aria-label="Evento anterior" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" /></svg></button>
+          <button type="button" class="destacado-flecha destacado-siguiente" id="destacadoSiguiente" aria-label="Evento siguiente" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" /></svg></button>
+        </section>
+      </section>
+      <div class="contenido-index">
+      <section class="buscador-seccion" aria-labelledby="tituloBuscador">
+        <h2 id="tituloBuscador">Encuentra tu plan</h2>
+        <div class="busqueda">
+          <div class="campo-busqueda campo-plan">
+            <label for="buscador">Buscar evento</label>
+            <div class="campo-plan-control campo-plan-busqueda">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <input type="search" id="buscador" placeholder="Título, descripción o lugar" autocomplete="off" aria-controls="resultadosBusqueda" aria-expanded="false" />
+              <button type="button" id="borrarBusqueda" aria-label="Borrar búsqueda" hidden><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
+            <div id="resultadosBusqueda" class="resultados-desplegable" style="display: none"></div>
+          </div>
+          <button type="button" id="abrirFiltrosMovil" class="abrir-filtros-movil" aria-controls="panelFiltrosMovil" aria-expanded="false">Filtros <span id="contadorFiltrosMovil" hidden>0</span></button>
+          <div class="filtros-panel" id="panelFiltrosMovil">
+            <div class="filtros-panel-contenido">
+              <div class="filtros-panel-cabecera"><h3 id="tituloPanelFiltros">Filtros</h3><button type="button" id="cerrarFiltrosMovil" aria-label="Cerrar filtros"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>
+              <div class="campo-filtro campo-plan">
+                <label for="filtroCategoria">Categoría</label>
+                <select id="filtroCategoria">
+                  <option value="todos">Todas las categorías</option>
+                  <option value="cultura">Cultura</option><option value="deportes">Deportivo</option><option value="fiestas">Fiesta</option>
+                  <option value="arte">Arte</option><option value="concierto">Concierto</option><option value="cine">Cine</option>
+                  <option value="educacion">Educación</option><option value="ayuntamiento">Ayuntamiento</option><option value="familiar">Familiar</option>
+                  <option value="mercado">Mercado</option><option value="naturaleza">Naturaleza</option><option value="gastronomia">Gastronomía</option>
+                  <option value="juventud">Juventud</option><option value="otros">Otros</option>
+                </select>
+              </div>
+              <div class="campo-periodo campo-plan">
+                <label for="filtroCuando">Cuándo</label>
+                <select id="filtroCuando">
+                  <option value="todos">Cualquier fecha</option>
+                  <option value="hoy">Hoy</option>
+                  <option value="manana">Mañana</option>
+                  <option value="semana">Esta semana</option>
+                  <option value="fin-semana">Este fin de semana</option>
+                  <option value="personalizado">Elegir fechas…</option>
+                </select>
+                <span id="periodoPersonalizadoTexto" class="periodo-personalizado-texto" hidden></span>
+                <button type="button" id="editarFechas" class="editar-fechas" hidden>Editar fechas</button>
+              </div>
+              <label class="filtro-gratis-control"><input type="checkbox" id="filtroGratis" /> Solo gratuitos</label>
+              <div class="filtros-panel-acciones"><button type="button" id="cancelarFiltrosMovil">Cancelar</button><button type="button" id="aplicarFiltrosMovil">Ver resultados</button></div>
+            </div>
+          </div>
+        </div>
+      <div class="filtros-agenda" aria-label="Resumen de filtros de eventos">
+        <button type="button" class="limpiar-filtros" id="limpiarFiltros" hidden>Limpiar filtros</button>
+        <div class="filtros-activos" id="filtrosActivos" aria-label="Filtros activos"></div>
+      </div>
+
+      <dialog id="dialogoFechas" class="dialogo-fechas" aria-labelledby="tituloDialogoFechas">
+        <div class="dialogo-fechas-cabecera"><h3 id="tituloDialogoFechas">Elegir fechas</h3><button type="button" id="cerrarDialogoFechas" aria-label="Cerrar selector de fechas"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>
+        <p>Marca el primer día y, si quieres un intervalo, marca el último.</p>
+        <div class="dialogo-fechas-mes">
+          <button type="button" id="mesAnteriorFiltro" aria-label="Mes anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <h4 id="mesVisibleFiltro" aria-live="polite"></h4>
+          <button type="button" id="mesSiguienteFiltro" aria-label="Mes siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="dialogo-fechas-semana" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+        <div id="calendarioFiltroFechas" class="dialogo-fechas-dias" role="group" aria-label="Días del mes"></div>
+        <p id="resumenRangoFechas" class="dialogo-fechas-resumen" role="status" aria-live="polite"></p>
+        <div class="dialogo-fechas-acciones"><button type="button" id="cancelarDialogoFechas">Cancelar</button><button type="button" id="aplicarDialogoFechas">Aplicar</button></div>
+      </dialog>
+
+      </section>
+
+      <!-- CALENDARIO -->
+      <section id="calendario" class="seccion" tabindex="-1">
+        <div class="titulo-seccion">
+          <div>
+            <h2>Calendario municipal</h2>
+            <p class="subtitulo-seccion">Consulta las actividades y eventos programados en Gilena.</p>
+          </div>
+          <button type="button" class="boton-imprimir-agenda" id="abrirAgendaImprimible"><i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir agenda</button>
+        </div>
+
+        <div class="calendario-contenedor">
+          <div class="calendario-cabecera">
+            <button type="button" onclick="mesAnterior()" aria-label="Mes anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+
+            <h3 id="mesActual"></h3>
+
+            <button type="button" class="calendario-hoy" onclick="irAHoy()">Hoy</button>
+
+            <button type="button" onclick="mesSiguiente()" aria-label="Mes siguiente">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+
+          <div class="dias-semana">
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mié</div>
+            <div>Jue</div>
+            <div>Vie</div>
+            <div>Sáb</div>
+            <div>Dom</div>
+          </div>
+
+          <div id="calendarioDias" class="calendario-dias">
+            <!-- JavaScript genera los días -->
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTOS -->
+      <section id="eventos" class="seccion" tabindex="-1">
+        <div class="titulo-seccion">
+          <div>
+            <h2 id="tituloProximosEventos" tabindex="-1">Próximos eventos</h2>
+            <p id="periodoDiaSeleccionado" class="subtitulo-seccion" hidden></p>
+          </div>
+          <button type="button" class="limpiar-filtros" id="verPeriodoCompleto" hidden>Ver período completo</button>
+        </div>
+        <div class="resultados-vista-barra">
+          <p class="resumen-filtros" id="resumenFiltros" role="status" aria-live="polite"></p>
+          <div class="selector-vista" role="group" aria-label="Vista de eventos">
+            <button type="button" data-vista-eventos="cuadricula" aria-pressed="true"><i class="fa-solid fa-border-all" aria-hidden="true"></i> Cuadrícula</button>
+            <button type="button" data-vista-eventos="lista" aria-pressed="false"><i class="fa-solid fa-list" aria-hidden="true"></i> Lista</button>
+          </div>
+        </div>
+
+        <div id="listaEventos" class="lista-eventos">
+          <!-- JavaScript genera los eventos -->
+        </div>
+
+        <p id="sinResultados" class="sin-resultados">
+          No hay eventos con estos filtros.
+        </p>
+
+        <details class="eventos-anteriores" id="eventosAnteriores">
+          <summary>Eventos anteriores <span id="contadorAnteriores"></span></summary>
+          <div id="listaEventosAnteriores" class="lista-eventos"></div>
+          <p id="sinResultadosAnteriores" class="sin-resultados">No hay eventos anteriores que coincidan con los filtros.</p>
+        </details>
+      </section>
+
+      <section id="fiestasDestacadas" class="fiestas-destacadas seccion" aria-labelledby="tituloFiestas" hidden>
+        <div class="titulo-seccion"><h2 id="tituloFiestas">Fiestas destacadas de Gilena</h2></div>
+        <div id="listaFiestasDestacadas" class="fiestas-grid"></div>
+      </section>
+
+      </div>
+    </main>
+
+    <div class="panel-dia-fondo" id="panelDiaFondo" hidden>
+      <section class="panel-dia" role="dialog" aria-modal="true" aria-labelledby="panelDiaTitulo" tabindex="-1">
+        <div class="panel-dia-cabecera">
+          <div><span>AGENDA DEL DÍA</span><h2 id="panelDiaTitulo"></h2></div>
+          <button type="button" id="cerrarPanelDia" aria-label="Cerrar eventos del día"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <div id="panelDiaLista" class="panel-dia-lista"></div>
+      </section>
+    </div>
+
+    <div class="agenda-impresion-fondo" id="agendaImpresionFondo" hidden>
+      <section class="agenda-impresion-dialogo" role="dialog" aria-modal="true" aria-labelledby="agendaImpresionTitulo">
+        <div class="agenda-impresion-controles">
+          <div><span>VISTA PREVIA</span><h2 id="agendaImpresionTitulo">Imprimir agenda</h2></div>
+          <button type="button" id="cerrarAgendaImprimible" aria-label="Cerrar vista previa">×</button>
+        </div>
+        <div class="agenda-selector-periodo">
+          <label for="agendaTipoPeriodo">Período<select id="agendaTipoPeriodo"><option value="semana">Semana</option><option value="mes">Mes</option></select></label>
+          <label for="agendaFechaPeriodo">Fecha de referencia<input type="date" id="agendaFechaPeriodo" /></label>
+          <button type="button" class="boton-principal" id="imprimirAgenda"><i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir o guardar PDF</button>
+        </div>
+        <div id="agendaImprimible" class="agenda-imprimible"></div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="informacion" tabindex="-1"></footer>
+
+    <script src="JS/cuentas/perfiles.js"></script>
+    <script src="JS/comun/contenido-web.js"></script>
+    <script src="JS/comun/cabecera-publica.js"></script>
+    <script src="JS/eventos/estado-eventos.js"></script>
+    <script src="JS/comun/formato-fechas.js"></script>
+    <script src="JS/comun/biblioteca-imagenes.js"></script>
+    <script src="JS/eventos/imagenes-evento.js"></script>
+    <script src="JS/eventos/colores-eventos.js"></script>
+    <script src="JS/cuentas/favoritos-municipales.js"></script>
+    <script src="JS/eventos/tarjetas-evento.js"></script>
+    <script src="JS/paginas/script.js"></script>
+    <script src="JS/eventos/destacados-config.js"></script>
+    <script src="JS/eventos/destacados-inicio.js"></script>
+    <script src="JS/paginas/inicio.js"></script>
+  </body>
+</html>

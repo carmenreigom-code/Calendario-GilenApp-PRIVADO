@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="JS/comun/ajustes.js"></script>
+    <title>Detalles del Evento | Gilena</title>
+    <link rel="stylesheet" href="CSS/estilos.css" />
+    <link rel="stylesheet" href="CSS/ajustes.css" />
+    <link rel="stylesheet" href="CSS/evento.css" />
+    <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+    <link rel="stylesheet" href="CSS/tarjetas-evento.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="CSS/cabecera.css" />
+  </head>
+  <body class="pagina-evento">
+    <header id="cabeceraPublica"></header>
+    <main id="detalleEventoContenedor"></main>
+    <footer id="informacion"></footer>
+    <script src="JS/cuentas/perfiles.js"></script>
+    <script src="JS/comun/contenido-web.js"></script>
+    <script src="JS/comun/cabecera-publica.js"></script>
+    <script src="JS/eventos/estado-eventos.js"></script>
+    <script src="JS/comun/formato-fechas.js"></script>
+    <script src="JS/calendario/calendario-externo.js"></script>
+    <script src="JS/comun/biblioteca-imagenes.js"></script>
+    <script src="JS/eventos/imagenes-evento.js"></script>
+    <script src="JS/eventos/contenido-bloques.js"></script>
+    <script src="JS/eventos/informacion-evento.js"></script>
+    <script src="JS/cuentas/favoritos-municipales.js"></script>
+    <script src="JS/eventos/colores-eventos.js"></script>
+    <script src="JS/eventos/tarjetas-evento.js"></script>
+    <script src="JS/eventos/render-evento.js"></script>
+    <script>
+      let eventosDetalle = [];
+      try {
+        const guardados = JSON.parse(localStorage.getItem("eventos") || "[]");
+        eventosDetalle = Array.isArray(guardados) ? guardados : [];
+      } catch (error) { eventosDetalle = []; }
+      const id = new URLSearchParams(window.location.search).get("id");
+      const actual = eventosDetalle.find((item) => String(item.id) === id && esEventoPublicado(item));
+      const contenedor = document.getElementById("detalleEventoContenedor");
+      if (actual) {
+        contenedor.innerHTML = DetalleEvento.renderizar(actual, { relacionados: eventosDetalle });
+        DetalleEvento.activar(contenedor, actual);
+        try {
+          const origen = sessionStorage.getItem("origenDetalleGilena");
+          const volver = contenedor.querySelector(".evento-volver");
+          if (volver && origen === "favoritos") { volver.href = "mis-eventos.html?restaurar=1"; volver.lastChild.textContent = " Volver a Mis favoritos"; }
+          else if (volver && origen === "destacados") volver.href = "index.html?restaurar=1#destacados";
+          else if (volver && origen === "inicio") volver.href = "index.html?restaurar=1#calendario";
+          sessionStorage.removeItem("origenDetalleGilena");
+        } catch (error) {}
+      } else {
+        contenedor.innerHTML = '<div class="evento-no-encontrado"><h2>Evento no encontrado</h2><a href="index.html" class="boton-principal">Volver al inicio</a></div>';
+      }
+    </script>
+  </body>
+</html>

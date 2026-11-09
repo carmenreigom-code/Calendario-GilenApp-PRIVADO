@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="JS/comun/ajustes.js"></script>
+  <title>Mis favoritos | Ayuntamiento de Gilena</title>
+  <link rel="stylesheet" href="CSS/estilos.css" />
+  <link rel="stylesheet" href="CSS/ajustes.css" />
+  <link rel="stylesheet" href="CSS/imagenes-evento.css" />
+  <link rel="stylesheet" href="CSS/cabecera.css" />
+  <link rel="stylesheet" href="CSS/mis-favoritos.css" />
+  <link rel="stylesheet" href="CSS/tarjetas-evento.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="pagina-inicio pagina-mis-eventos">
+  <header id="cabeceraPublica"></header>
+  <main class="favoritos-main" id="mis-eventos">
+    <section class="favoritos-intro" aria-labelledby="tituloMisEventos"><h1 id="tituloMisEventos">Mis favoritos</h1><p id="contadorFavoritos" aria-live="polite"></p></section>
+    <section class="favoritos-calendario" aria-labelledby="tituloCalendarioFavoritos">
+      <div class="favoritos-calendario-cabecera"><div><h2 id="tituloCalendarioFavoritos">Calendario</h2><p id="mesVisible" aria-live="polite"></p></div><div class="favoritos-mes-controles"><button type="button" id="mesAnterior" aria-label="Mes anterior">‹ <span>Anterior</span></button><button type="button" id="irHoy">Hoy</button><button type="button" id="mesSiguiente" aria-label="Mes siguiente"><span>Siguiente</span> ›</button></div></div>
+      <div class="favoritos-filtros" role="group" aria-label="Filtrar eventos"><button type="button" data-tipo="todos" aria-pressed="true">Todos</button><button type="button" data-tipo="municipal" aria-pressed="false">Favoritos municipales</button><button type="button" data-tipo="google" aria-pressed="false">Google Calendar</button></div>
+      <div class="favoritos-semana" aria-hidden="true"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+      <div id="diasFavoritos" class="favoritos-dias" role="group" aria-label="Días del mes"></div>
+    </section>
+    <section class="favoritos-listado" aria-labelledby="tituloListadoFavoritos">
+      <div class="favoritos-listado-cabecera"><div><h2 id="tituloListadoFavoritos" tabindex="-1">Eventos favoritos</h2></div><button type="button" id="verTodoMes" hidden>Ver todo el mes</button></div>
+      <div class="favoritos-filtros-lista"><label>Buscar favoritos <input id="buscarFavoritos" type="search" placeholder="Buscar por título o lugar"></label><label>Categoría <select id="categoriaFavoritos"><option value="todos">Todas</option></select></label></div>
+      <div class="resultados-vista-barra"><p id="periodoListado" aria-live="polite"></p><div class="selector-vista" role="group" aria-label="Vista de eventos favoritos"><button type="button" data-vista-eventos="cuadricula" aria-pressed="true"><i class="fa-solid fa-border-all" aria-hidden="true"></i> Cuadrícula</button><button type="button" data-vista-eventos="lista" aria-pressed="false"><i class="fa-solid fa-list" aria-hidden="true"></i> Lista</button></div></div>
+      <div id="eventosFavoritos" class="favoritos-grid"></div>
+      <div id="favoritosVacios" class="favoritos-vacio" hidden><p>Aún no tienes favoritos municipales en este navegador.</p><a href="index.html#calendario">Explorar eventos</a></div>
+      <p id="sinCoincidencias" hidden>No hay eventos municipales favoritos para este período.</p>
+    </section>
+    <dialog id="dialogoCopia" aria-labelledby="tituloCopia"><div class="copia-contenido"><h2 id="tituloCopia">Añadir a Google Calendar</h2><p id="resumenCopia"></p><label id="grupoCalendarioCopia" hidden>Calendario de destino <select id="calendarioCopia"></select></label><p id="mensajeCopia" role="status" aria-live="polite"></p><div class="copia-acciones"><button type="button" id="confirmarCopia">Continuar</button><button type="button" id="cancelarCopia">Cancelar</button></div></div></dialog>
+    <dialog id="dialogoDia" aria-labelledby="tituloDia"><div class="copia-contenido"><h2 id="tituloDia">Eventos del día</h2><div id="listaDia" class="favoritos-dia-lista"></div><button type="button" id="cerrarDia">Cerrar</button></div></dialog>
+  </main>
+  <footer id="informacion"></footer>
+  <script src="JS/calendario/google-config.js"></script>
+  <script src="JS/cuentas/perfiles.js"></script>
+  <script src="JS/comun/contenido-web.js"></script>
+    <script src="JS/comun/cabecera-publica.js"></script>
+  <script src="JS/eventos/estado-eventos.js"></script>
+  <script src="JS/comun/formato-fechas.js"></script>
+  <script src="JS/comun/biblioteca-imagenes.js"></script>
+    <script src="JS/eventos/imagenes-evento.js"></script>
+  <script src="JS/eventos/colores-eventos.js"></script>
+  <script src="JS/eventos/tarjetas-evento.js"></script>
+  <script src="JS/cuentas/favoritos-municipales.js"></script>
+  <script src="JS/calendario/calendario-externo.js"></script>
+  <script src="JS/calendario/google-agenda.js"></script>
+  <script src="JS/calendario/google-fechas.js"></script>
+  <script src="JS/paginas/mis-favoritos.js"></script>
+</body>
+</html>
